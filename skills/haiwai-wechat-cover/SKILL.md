@@ -107,6 +107,10 @@ The example layout for one source must never become the default template for ano
 
 Inspect the source image before deciding how to fit it.
 
+Never require the uploaded source to match either WeChat output ratio. Treat mismatched dimensions as normal. Adapt each format independently with visually chosen cropping, proportional scaling, downsampling, and ordinary image compression as needed. Reframe the source to improve composition while preserving important subjects and useful detail.
+
+“Compression” means proportional resizing and sensible file-size optimization. Never stretch width and height independently, squash objects, alter proportions, or lower image quality enough to create visible artifacts.
+
 Create exact-size background rasters with `scripts/prepare_image.py`:
 
 - Use `cover` with a visually chosen focal point when cropping preserves the subject.
