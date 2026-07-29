@@ -56,7 +56,10 @@ Follow [references/layout-spec.md](references/layout-spec.md) exactly.
 Core rules:
 
 - Center the keyword or company logo.
-- Use a shared master central-content footprint of at most 288 × 69 px in both cover formats. This keeps visual size consistent across runs and formats.
+- Use format-specific master central-content footprints so both outputs remain readable at their actual display sizes:
+  - landscape: at most 360 × 150 px;
+  - square: at most 500 × 230 px.
+- Keep sizing consistent across runs within each format. The square content is intentionally larger because it is reduced more aggressively in share cards and the combined preview.
 - Preserve logo aspect ratios. Never stretch, crop, or distort a company logo.
 - Prefer a single keyword line. Allow at most two lines; shrink long text instead of exceeding the footprint.
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
@@ -102,7 +105,7 @@ Adapt the aspect ratio without changing the original visual style. Cropping, rep
 
 Do not redraw, restyle, replace, or generatively reinterpret the subject. Do not use generative expansion unless the user explicitly requests it; even then, preserve the original style and never alter logos, charts, screenshots, products, text, or other detail-sensitive content.
 
-When a contained source overlaps the centered keyword or logo, reduce its scale proportionally and align the intact source toward an edge of the extended canvas. Keep the central 288 × 69 px footprint visually clear whenever possible.
+When a contained source overlaps the centered keyword or logo, reduce its scale proportionally and align the intact source toward an edge of the extended canvas. Keep the active format's central footprint visually clear whenever possible.
 
 When this creates an unbalanced or corner-heavy result, first try a larger native crop or source-backed crop. Extract and recompose only when those less destructive options cannot produce the required balance.
 
@@ -155,7 +158,7 @@ For keyword mode:
 For company-logo mode:
 
 - Upload the trimmed transparent image.
-- Fit it inside the shared 288 × 69 px footprint.
+- Fit it inside the active format's master footprint: 360 × 150 px for landscape or 500 × 230 px for square.
 - Preserve aspect ratio and transparency.
 
 Construct the combined preview after the two main covers pass visual QA. Clone the completed covers: keep the landscape at 900 × 383, scale the square clone to 383 × 383, and separate them with a 24 px white gap.
@@ -170,7 +173,8 @@ Check:
 - important subject matter remains visible;
 - the adapted image preserves the original style, palette, lighting, materials, typography, and object geometry;
 - center content is geometrically centered;
-- both formats use the same master content scale;
+- each format uses its specified master content scale;
+- the square title or company logo remains clearly readable after the square is reduced to 383 × 383 in the combined preview;
 - no keyword overflow or unintended wrapping;
 - no logo distortion or transparent-padding shrinkage;
 - brand logo position, contrast, and safe margins;

@@ -114,7 +114,8 @@ For keyword mode:
 
 - load the chosen font;
 - create the text in both covers;
-- fit it into 288 × 69 px;
+- fit it into 360 × 150 px in landscape or 500 × 230 px in square;
+- start short two-line titles near 70 px / 66 px line height in landscape and 100 px / 92 px line height in square, then adjust optically;
 - use explicit range styling for highlighted terms;
 - center geometrically after final sizing;
 - return all created or mutated node IDs.
@@ -149,7 +150,8 @@ Use inline screenshots or `get_screenshot` after each major stage. Fix:
 - off-center content;
 - text overflow;
 - logo distortion;
-- inconsistent content scale;
+- content scale that is inconsistent with the format-specific master footprint;
+- a square title that becomes too small or cramped after the square is reduced to 383 × 383;
 - wrong combined spacing.
 - passive empty space that makes the source subjects feel timid;
 - any mask halo, polygon edge, foreign fragment, or background mismatch.

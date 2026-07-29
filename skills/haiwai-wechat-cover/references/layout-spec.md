@@ -33,15 +33,16 @@ Place the Section itself to the right of the rightmost existing top-level page n
 
 ## Central content
 
-Use the same master visual footprint in both cover formats:
+Use a format-specific master visual footprint:
 
-- maximum width: 288 px;
-- maximum height: 69 px;
-- center point: exact canvas center;
-- landscape box: x = 306, y = 157;
-- square box: x = 306, y = 416.
+| Format | Maximum width | Maximum height | Centered box |
+| --- | ---: | ---: | --- |
+| Landscape | 360 px | 150 px | x = 270, y = 116.5 |
+| Square | 500 px | 230 px | x = 200, y = 335 |
 
-The broader 32% × 18% center safe zone may be used for collision checks, but do not enlarge the content beyond the 288 × 69 px master footprint.
+Both boxes share the exact canvas center. Keep sizing consistent across runs within each format.
+
+The square footprint is intentionally larger. The square is reduced to 383 × 383 in the combined preview and often appears as a small share-card thumbnail, so matching the landscape's native pixel size makes the square title look too small.
 
 ### Keyword
 
@@ -50,7 +51,8 @@ The broader 32% × 18% center safe zone may be used for collision checks, but do
 - Font preference: Albertus Nova, then Alegreya ExtraBold.
 - Upright style only; no italics.
 - Single line preferred; two lines maximum.
-- Shrink long text to fit; never exceed the footprint.
+- Use confident type size and comfortable line spacing for short two-line titles. As a starting point with Alegreya ExtraBold, use about 70 px with 66 px line height in landscape and 100 px with 92 px line height in square, then adjust optically.
+- Shrink long text to fit; never exceed the active format's footprint.
 - Default color: black or white, whichever has stronger local contrast.
 - Apply explicit highlight colors only when requested.
 
@@ -90,6 +92,7 @@ Do not add a shadow on a sufficiently dark background.
 - gap: x = 900–923, width 24 px;
 - square clone: x = 924, y = 0, size 383 × 383;
 - preserve all child layers in both clones.
+- inspect the square title at the reduced 383 × 383 size; it must remain prominent and comfortable to read.
 
 ## Resolution
 
