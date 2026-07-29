@@ -96,6 +96,8 @@ For title legibility, judge the final composition in this order:
 
 The absence of a title backing is not a goal by itself, and the presence of one is not a quality signal. The test is whether the whole cover feels intentional, premium, and immediately readable.
 
+Require a stable low-interference reading zone for every title. Do not solve a noisy title area merely by increasing font size or weight. If letterforms cross rapidly alternating light/dark regions, saturated color changes, dense edges, or embedded source text, reframe or recompose the artwork first; add restrained local support only when the composition still needs it.
+
 Do not treat background removal as the default. If the source background is white, red, or any other color that already supports the composition, preserve it as part of the image. Prefer a native crop or source-backed crop over a transparent cutout.
 
 Use `scripts/prepare_image.py crop-region` to keep a rectangular region with its original background. It may cover unrelated source fragments with the sampled edge color only when the background is simple and continuous.
@@ -120,6 +122,8 @@ Classify the source before choosing tools. Follow the routing matrix in [referen
 4. If a photograph, complex texture, or spatial scene genuinely needs unseen content, perform a style-preserving image edit or generative extension before Figma layout.
 
 Interpret “turn this vertical image into a horizontal image” as extending or reconstructing the composition, never as horizontally stretching the whole image. Allow limited non-uniform widening only for pure, deformation-safe texture or gradient backgrounds. Never deform people, products, text, logos, charts, screenshots, illustrations, or geometric objects.
+
+Reject direct cropping when it retains less than roughly 60% of the meaningful composition, or when important elements occupy both the top and bottom of the source and cannot survive together. Route such sources to source-derived canvas extension or element recomposition even when a crop would be faster.
 
 Create exact-size background rasters with `scripts/prepare_image.py`:
 
@@ -222,6 +226,7 @@ Check:
 - any title support is demonstrably necessary, source-coordinated, and no larger or heavier than needed;
 - no unnecessary title support obscures useful artwork or makes the cover feel templated.
 - two-line titles do not feel vertically compressed, tightly tracked, or crowded against their support boundary.
+- title letterforms do not cross rapidly changing light/dark regions, multiple saturated colors, dense edges, or embedded source text.
 
 Fix issues before exporting.
 

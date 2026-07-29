@@ -26,6 +26,7 @@ Place the Section itself to the right of the rightmost existing top-level page n
 - Assume the uploaded source will usually have a different aspect ratio. Crop and proportionally resize it independently for the landscape and square outputs.
 - Allow sensible raster compression/downsampling when it does not create visible softness, banding, halos, or block artifacts.
 - Preserve the selected image's principal subject.
+- Reject a direct crop that retains less than roughly 60% of the meaningful composition, or cannot preserve important elements spanning both the top and bottom.
 - Prefer a focal-point cover crop when safe.
 - Use a source-derived solid extension for simple or nearly uniform backgrounds when a cover crop would cut important content.
 - Use a source-derived blurred extension only for photographic or textured backgrounds.
@@ -65,6 +66,7 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 - Start with no background behind the keyword.
 - Add a plate, gradient, blur, veil, or local weakening only when direct placement fails the combined tests of contrast, hierarchy, and overall beauty.
 - Adapt support to the source; do not use a fixed white card, radius, opacity, or size.
+- Require a stable low-interference reading zone. Reframe or recompose before relying on heavier type, and never let title letterforms cross rapidly alternating colors, dense edges, or embedded source text.
 
 ### Company logo
 

@@ -129,11 +129,14 @@ For company-logo mode, inspect the uploaded logo in both covers and verify it is
 First evaluate keyword/company-logo legibility with `Title Support` hidden.
 
 - Leave it hidden when natural negative space and contrast are sufficient.
+- Reject title placement over rapidly alternating colors, dense edges, embedded text, or multiple high-saturation regions. Recompose the artwork to create a stable reading zone before adding support.
 - If support is necessary, adapt its shape, size, color, opacity, blur/gradient treatment, and radius to the current source.
 - Prefer the smallest intervention that stabilizes readability and improves the overall composition.
 - Never default to a fixed white rounded rectangle.
 
 Apply the specified shadow only where the white logo lacks contrast. Reassign the full effects array; do not mutate it in place.
+
+During QA, fail the cover if individual letterforms lose clarity as they cross several colors, high-frequency edges, or source typography—even when the title is technically large enough.
 
 ## 8. Batched layout and combined preview
 

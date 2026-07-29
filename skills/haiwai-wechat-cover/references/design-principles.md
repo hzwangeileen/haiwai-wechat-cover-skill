@@ -35,7 +35,7 @@ Use the least destructive strategy that creates a balanced cover:
 
 Classify the source before entering Figma:
 
-1. **Direct proportional crop** — Use when separate landscape and square crops retain the meaningful subject. Upload the original once, reuse one Figma `imageHash`, and apply independent `CROP` transforms/focal positions. This is the normal fast path.
+1. **Direct proportional crop** — Use only when each crop retains at least roughly 60% of the meaningful composition and preserves all priority elements. Reject it when important content spans both the top and bottom and cannot survive together. When accepted, upload the original once, reuse one Figma `imageHash`, and apply independent `CROP` transforms/focal positions.
 2. **Source-derived canvas extension** — Use when cropping would remove important content and the edge background is white, solid, or a simple gradient. Extend that background, then proportionally resize and reposition the intact subject.
 3. **Element recomposition** — Use when multiple meaningful elements need new relationships. Separate only what is needed, preserve every element’s proportions, and recompose on an extended canvas or in Figma.
 4. **Image edit or generative extension** — Use only when a photograph, complex texture, or spatial scene needs content that does not exist in the source. Extend in the same image-making style before adding titles and brand elements in Figma.
@@ -74,6 +74,8 @@ Do not automatically use left/right symmetry. Consider:
 - foreground/background depth;
 - asymmetric editorial composition;
 - controlled overlap that does not harm legibility.
+
+When the source background is white, solid, or otherwise simple and compatible, prefer rectangular source-backed regions for recomposition. Keep original object edges, shadows, texture, and embedded typography intact; let the native background merge into an extended canvas instead of forcing fragile masks.
 
 ### Restrained cleanup
 
