@@ -129,17 +129,18 @@ For keyword mode:
 
 For company-logo mode, inspect the uploaded logo in both covers and verify it is not visually undersized because of residual padding.
 
+Prefer a clean transparent company-logo asset when edge-background removal is safe. Inspect it at 100% before upload. Preserve the original opaque version when transparency introduces halos, missing internal whites, broken counters, or damaged thin strokes.
+
 ## 7. Title support and brand-logo contrast
 
 First evaluate keyword/company-logo legibility with `Title Support` hidden.
 
 - Leave it hidden when natural negative space and contrast are sufficient.
 - Reject title placement over rapidly alternating colors, dense edges, embedded text, or multiple high-saturation regions. Recompose the artwork to create a stable reading zone before adding support.
-- Never add a white gradient by default.
-- If support is necessary, first use a compact square or rectangular translucent solid plate, with a neutral or source-sampled color that visually belongs to the artwork.
-- Use local weakening next. Use a restrained gradient or blur only when direct text and a compact solid plate both fail to integrate cleanly.
+- Never add a pure-white card or white gradient.
+- If support is necessary, use a compact non-white translucent tint, restrained source- or brand-colored gradient, local weakening, or tonal veil.
 - Adapt support shape, size, color, opacity, and radius to the current source.
-- Prefer the smallest intervention that stabilizes readability and improves the overall composition.
+- Prefer the smallest intervention that stabilizes readability and improves the overall composition. Keep the treatment mature and editorial; avoid cute rounding, candy-like gradients, thick outlines, glow, or excessive shadow.
 - Never default to a fixed white rounded rectangle.
 
 Apply the specified shadow only where the white logo lacks contrast. Reassign the full effects array; do not mutate it in place.
@@ -177,7 +178,8 @@ Default to the inline combined-preview screenshot returned by the main mutation.
 - passive empty space that makes the source subjects feel timid;
 - any mask halo, polygon edge, foreign fragment, or background mismatch.
 - unnecessary, oversized, or source-incompatible title support.
-- habitual white gradients or generic title plates that feel pasted onto the image.
+- pure-white cards, habitual white gradients, or generic title plates that feel pasted onto the image.
+- childish, toy-like, gaudy, overly cute, or excessively effect-heavy styling.
 
 Do not proceed to export on a failed validation.
 

@@ -69,15 +69,20 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 - Apply explicit highlight colors only when requested.
 - Start with no background behind the keyword.
 - Add a plate, gradient, blur, veil, or local weakening only when direct placement fails the combined tests of contrast, hierarchy, and overall beauty.
-- Adapt support to the source; do not use a fixed white card, radius, opacity, or size.
+- Adapt support to the source; do not use a pure-white card or white gradient, or reuse a fixed radius, opacity, or size.
+- Prefer a restrained non-white tint or source-colored gradient only when support is necessary. Keep the result mature and editorial.
 - Require a stable low-interference reading zone. Reframe or recompose before relying on heavier type, and never let title letterforms cross rapidly alternating colors, dense edges, or embedded source text.
 
 ### Company logo
 
 - Trim transparent padding before placement.
+- When the source has a safely removable uniform edge background, create and inspect a clean transparent cutout first.
+- Preserve the original opaque logo if removal damages internal white shapes, counters, antialiasing, strokes, shadows, or brand colors.
 - Use FIT/contain behavior.
 - Preserve aspect ratio and alpha.
-- Do not add a background, outline, or recolor unless requested.
+- Test the logo directly on the image first; when it is clear, add no background.
+- When contrast is insufficient, use the smallest source- or brand-coordinated non-white translucent tint or restrained gradient needed for clarity.
+- Never add a default pure-white card. Do not add an outline or recolor unless requested.
 
 ## 海外独角兽 logo
 

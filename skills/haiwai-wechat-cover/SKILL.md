@@ -23,6 +23,8 @@ Optimize for useful visual quality per minute. Spend time only on changes that m
 
 Choose the cheapest reversible treatment that clears all three gates. Stop designing once the combined preview is attractive, clear, balanced, and free of visible defects. Do not add layers, effects, masks, gradients, alternate versions, or extra inspection passes merely to make the process appear more refined.
 
+Judge the final cover from first principles, not by whether it follows a familiar template. Require a premium, mature, editorial finish with controlled contrast, confident spacing, clean edges, and restrained effects. Reject results that feel childish, toy-like, crude, excessively cute, visually noisy, or generically “AI designed,” even when every required element is technically present.
+
 ## Required inputs
 
 Require:
@@ -77,8 +79,8 @@ Core rules:
 - Give two-line titles visible breathing room. Do not use line height smaller than the font size or negative tracking by default. Reduce type size before tightening line spacing, tracking, or support-layer padding.
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
-- Treat any title background, plate, gradient, blur, or local weakening as optional. First test the title directly on the composition. Add support only when it materially improves legibility, hierarchy, or beauty; never add it merely because another cover used one.
-- Do not default to a white gradient. If direct text is readable, use no support. If support is needed, first try a compact square or rectangular translucent plate whose neutral or source-sampled color belongs to the image. Use a gradient, blur, or broader tonal veil only when a simple plate cannot integrate cleanly.
+- Treat any title or company-logo background, plate, gradient, blur, or local weakening as optional. First test the content directly on the composition. If it is clearly readable, use no support at all.
+- Never use a pure-white support plate or default white gradient. If support is genuinely necessary, derive a compact translucent tint, restrained source-colored gradient, or local tonal veil from the image and logo palette. Keep it subtle, mature, and no larger than required.
 - Treat all other composition positions, scales, crops, and element relationships as source-specific design decisions, not a template.
 
 ## Design from first principles
@@ -104,9 +106,9 @@ For landscape covers, never confine all meaningful source content to only the le
 
 For title legibility, judge the final composition in this order:
 
-1. Use natural negative space with no title backing when contrast and hierarchy are already strong.
+1. Use natural negative space with no backing when the title or company logo is already clear.
 2. Reposition or reframe source elements when that creates a better title zone without harming the subject.
-3. Only when necessary, add the least intrusive coordinated support: first a compact translucent solid plate, preferably neutral or sampled from the source; then local weakening; use a restrained gradient or blur only as a last resort.
+3. Only when necessary, add the least intrusive coordinated support: a compact non-white translucent tint, a restrained source-colored gradient, local weakening, or a tonal veil.
 4. Size and shape that support for the current source. Do not reuse a fixed white rounded rectangle, opacity, radius, or footprint across unrelated images.
 
 The absence of a title backing is not a goal by itself, and the presence of one is not a quality signal. The test is whether the whole cover feels intentional, premium, immediately readable, and visually integrated with the source rather than carrying a generic pasted-on label.
@@ -161,7 +163,13 @@ When this creates an unbalanced or corner-heavy result, first try a larger nativ
 
 The utility requires Pillow. If the active Python cannot import `PIL`, use the Codex workspace dependency loader to locate the bundled Python runtime. Do not install packages or change the user's Python environment without approval.
 
-For a company logo, run the same script in `trim-alpha` mode before upload. The script removes transparent padding and adds a small clean margin. If the logo has an opaque background, preserve it and do not guess at background removal.
+For a company logo:
+
+1. If it already has transparency, run `trim-alpha` before upload.
+2. If it has a uniform or nearly uniform edge background, prefer `remove-edge-background --trim` to create a transparent cutout.
+3. Inspect the transparent result at 100%. Reject it if it damages internal white regions, enclosed counters, antialiasing, thin strokes, shadows, or brand colors. Fall back to the original logo when clean removal is not possible.
+4. Test the clean transparent logo directly on the composition first. If it is readable, add no support.
+5. If it is not readable, add a compact source- or brand-coordinated tinted gradient or translucent non-white support. Never place the logo on a default pure-white card.
 
 ## Use the fixed Figma workspace
 
@@ -216,9 +224,10 @@ For keyword mode:
 
 For company-logo mode:
 
-- Upload the trimmed transparent image.
+- Prefer a clean trimmed transparent image when the source permits safe edge-background removal.
 - Fit it inside the active format's master footprint: 360 × 150 px for landscape or 500 × 230 px for square.
 - Preserve aspect ratio and transparency.
+- If the transparent logo lacks contrast, add only the smallest mature source- or brand-colored gradient/tint needed for legibility. If it reads directly, keep `Title Support` hidden.
 
 Construct the combined preview after the two main covers pass visual QA. Clone the completed covers: keep the landscape at 900 × 383, scale the square clone to 383 × 383, and separate them with a 24 px white gap.
 
@@ -248,8 +257,11 @@ Check:
 - no large neutral region dominates the frame without a deliberate compositional purpose;
 - no cutout halo, foreign fragment, polygon edge, or background mismatch is visible at 100%.
 - any title support is demonstrably necessary, source-coordinated, and no larger or heavier than needed;
-- no white gradient appears by habit; direct text or a compact translucent solid plate is preferred whenever it reads clearly and blends better;
+- no pure-white support card or habitual white gradient appears;
+- text or a company logo that reads directly has no backing;
+- any required backing uses a restrained source- or brand-coordinated tint/gradient and feels integrated rather than pasted on;
 - no unnecessary title support obscures useful artwork or makes the cover feel templated.
+- the final tone is mature, premium, and editorial rather than childish, toy-like, cute, gaudy, or over-effected.
 - two-line titles do not feel vertically compressed, tightly tracked, or crowded against their support boundary.
 - title letterforms do not cross rapidly changing light/dark regions, multiple saturated colors, dense edges, or embedded source text.
 

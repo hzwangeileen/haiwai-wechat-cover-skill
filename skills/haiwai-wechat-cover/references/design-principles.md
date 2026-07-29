@@ -27,6 +27,8 @@ Keep the center content easy to read without making the source decorative or ins
 
 Do not assume centered content needs a background. First use the image's natural negative space and local contrast. A backing plate, gradient, blur, veil, or local tonal weakening is an adaptive compositional tool, not a template requirement.
 
+Treat a company logo as transparent by preference, not by force. Remove a uniform edge background only when the result preserves every internal white region, counter, stroke, shadow, and brand color. Test the transparent logo directly on the composition; add no backing when it reads clearly. When support is necessary, use a restrained non-white tint or source-/brand-colored gradient rather than a pure-white card.
+
 ## 3. Choose a strategy
 
 Use the least destructive strategy that creates a balanced cover:
@@ -103,6 +105,9 @@ Reject a composition when:
 - a mask halo or polygon boundary is visible at normal size or 100%;
 - the result looks like a template rather than a response to the source;
 - a source element is enlarged beyond useful detail.
+- the treatment feels childish, toy-like, overly cute, gaudy, immature, or generically “AI designed”;
+- a pure-white logo/title card or habitual white gradient sits on top of the artwork;
+- gradients, rounded corners, outlines, glow, or shadows are decorative rather than necessary.
 
 Prefer:
 
@@ -113,8 +118,9 @@ Prefer:
 - consistent light and shadow;
 - restrained color;
 - crisp edges and typography.
+- a mature editorial tone, restrained effects, sophisticated color relationships, and materials that feel intentional.
 
-When title support is necessary, it should feel derived from the source rather than pasted on top of it. Match the source's geometry, palette, edge language, and degree of softness. Use the least area and opacity that reliably solves the reading problem. Remove it when direct text is already clear.
+When title or company-logo support is necessary, it should feel derived from the source rather than pasted on top of it. Match the source's geometry, palette, edge language, and degree of softness. Use the least area and opacity that reliably solves the reading problem. Remove it whenever the text or transparent logo is already clear.
 
 Negative space must support focus, tension, or reading order. It is not automatically premium. As a practical review heuristic, enlarge or reframe the subjects when a neutral empty region dominates roughly one third of the frame without serving a clear compositional role. This is a quality check, not a fixed template rule.
 
