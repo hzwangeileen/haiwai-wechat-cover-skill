@@ -79,6 +79,8 @@ Core rules:
 - Give two-line titles visible breathing room. Do not use line height smaller than the font size or negative tracking by default. Reduce type size before tightening line spacing, tracking, or support-layer padding.
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
+- Treat the bundled `assets/haiwai-unicorn-logo-white.png` as the canonical high-resolution brand master. Its expected source is 928 × 801 RGBA pixels with SHA-256 `aac7770a785256cc83ed88987959f570866da224ac41aa9e74b97654f7c02b36`. Never substitute a screenshot, chat thumbnail, preview export, recompressed copy, or previously exported cover crop.
+- Preserve the brand logo with Figma `FIT` behavior and proportional geometry. Never stretch, squash, crop, rasterize, sharpen, or repeatedly export and re-upload it. At 81 px display width, always render from the canonical master already embedded in the fixed Figma template.
 - Treat any title or company-logo background, plate, gradient, blur, or local weakening as optional. First test the content directly on the composition. If it is clearly readable, use no support at all.
 - Never use a pure-white support plate or default white gradient. If support is genuinely necessary, derive a compact translucent tint, restrained source-colored gradient, or local tonal veil from the image and logo palette. Keep it subtle, mature, and no larger than required.
 - Do not over-prioritize a background-free title. If any word, line, or material part of the letterforms becomes hard to read over multicolor objects, source typography, or changing light/dark regions, add a compact coordinated translucent support after reasonable placement adjustments. A light illustration may use a warm ivory, pale gray, or source-tinted translucent panel; keep it visibly integrated and distinct from a default opaque white card.
@@ -197,6 +199,8 @@ Find the top-level Section named `海外独角兽封面｜MASTER`. Duplicate its
 
 Do not upload the fixed brand logo again when the master is available. Replace only source-specific image/company-logo fills and text. If the master is missing or structurally invalid, repair it once from the bundled assets, then continue from the repaired master.
 
+Treat a soft or pixelated 海外独角兽 logo as a broken master, not an acceptable export. Verify that every cloned brand-logo layer still uses the canonical high-resolution image fill with `FIT`. If a layer points to a thumbnail, screenshot, derived PNG, or degraded re-upload, replace it from the bundled canonical asset before export.
+
 Create a new top-level Section named:
 
 `海外独角兽封面｜<keyword-or-company>｜<YYYY-MM-DD>`
@@ -261,6 +265,7 @@ Check:
 - no company-logo matte, residual edge color, rectangular haze, white/gray fringe, or halo on light, dark, and saturated local backgrounds;
 - company logos remain crisp at 100% and are not raster-upscaled beyond their native dimensions; official matching vectors are used when available;
 - brand logo position, contrast, and safe margins;
+- the 海外独角兽 logo remains crisp at 100% in 1× output and at 100% in any requested 2× output; no thumbnail source, repeated rasterization, interpolation softness, or compression artifact is present;
 - combined preview order and spacing.
 - deliberate visual hierarchy, balance, rhythm, and premium finish;
 - no element appears mechanically squeezed into a corner;

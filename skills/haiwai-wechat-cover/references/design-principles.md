@@ -141,6 +141,8 @@ Negative space must support focus, tension, or reading order. It is not automati
 
 - Keep source elements at or below their native pixel density whenever possible.
 - Use vector text and vector-capable logos in Figma.
+- Always render the 海外独角兽 brand mark from the bundled canonical 928 × 801 RGBA PNG already embedded in the master. Never use a screenshot, thumbnail, preview, recompressed derivative, or cover-export crop for the brand mark.
+- Preserve the brand mark with `FIT` and proportional geometry. Fail delivery if it is soft or pixelated at 100%; repair the master from the canonical asset instead of sharpening or re-rasterizing.
 - Export the three required frames at both 1× and 2×.
 - Inspect the 2× files at 100% for mask halos, interpolation softness, and text clarity.
 - If a source is too small, redesign with a smaller displayed subject rather than fabricating detail.

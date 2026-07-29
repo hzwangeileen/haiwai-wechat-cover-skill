@@ -95,8 +95,12 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 
 Use `assets/haiwai-unicorn-logo-white.png`.
 
+- canonical source: 928 × 801 RGBA pixels;
+- canonical SHA-256: `aac7770a785256cc83ed88987959f570866da224ac41aa9e74b97654f7c02b36`;
 - display width: 81 px;
 - preserve aspect ratio;
+- use Figma `FIT`; never crop, stretch, squash, sharpen, rasterize, or re-upload an exported derivative;
+- use only the bundled canonical source or the identical image already embedded in the fixed master; screenshots, thumbnails, chat previews, and recompressed copies are forbidden;
 - landscape right margin: 27 px;
 - landscape top margin: 11.5 px;
 - square right margin: 27 px;
@@ -111,6 +115,8 @@ On a light local background, apply a restrained dark drop shadow:
 - spread: 0.
 
 Do not add a shadow on a sufficiently dark background.
+
+At export QA, the brand logo must remain crisp at 100% for 1× and for any requested 2× output. Any softness or pixelation indicates a degraded master asset and requires replacement from the canonical bundled PNG before delivery.
 
 ## Combined preview
 

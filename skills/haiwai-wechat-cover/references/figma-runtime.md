@@ -111,6 +111,8 @@ Do not upload the same ordinary source separately to landscape and square.
 
 The master already contains the fixed brand logo. Do not request new upload URLs or upload the bundled logo during a normal run. Upload it only while creating or repairing the master.
 
+The canonical brand source is `assets/haiwai-unicorn-logo-white.png`: 928 × 801 RGBA pixels, SHA-256 `aac7770a785256cc83ed88987959f570866da224ac41aa9e74b97654f7c02b36`. Keep the master logo fill linked to this original asset with `FIT`. Never populate brand-logo layers from screenshots, chat previews, exported cover PNGs, thumbnails, or recompressed derivatives.
+
 Do not send credentials, tokens, or unrelated files to upload URLs.
 
 ## 6. Add or refine center content
@@ -149,6 +151,8 @@ First evaluate keyword/company-logo legibility with `Title Support` hidden.
 
 Apply the specified shadow only where the white logo lacks contrast. Reassign the full effects array; do not mutate it in place.
 
+During QA, inspect the brand logo at 100% in the final export. If it appears soft or pixelated, fail the export and repair the master from the canonical 928 × 801 asset. Do not compensate with sharpening, larger display size, or another raster export/re-upload cycle.
+
 During QA, fail the cover if individual letterforms lose clarity as they cross several colors, high-frequency edges, or source typography—even when the title is technically large enough.
 
 For two-line titles, evaluate each line independently in both covers and in the reduced combined preview. The second line must not become less prominent because it crosses a busy object or similar-value region. Correct the reading zone or whole-title treatment before export.
@@ -181,6 +185,7 @@ Default to the inline combined-preview screenshot returned by the main mutation.
 - off-center content;
 - text overflow;
 - logo distortion;
+- soft, pixelated, recompressed, or repeatedly rasterized 海外独角兽 branding;
 - company-logo residual matte, edge-color haze, white/gray fringe, or halo on light, dark, or saturated backgrounds;
 - raster company-logo upscaling, soft edges at 100%, or failure to use an available matching official vector;
 - content scale that is inconsistent with the format-specific master footprint;
