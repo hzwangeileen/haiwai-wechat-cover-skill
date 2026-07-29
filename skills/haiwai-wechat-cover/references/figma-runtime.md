@@ -20,17 +20,11 @@ Start with a read-only `use_figma` call:
 
 Stop if the file is unavailable or read-only.
 
-## 2. Font discovery
+## 2. Font handling
 
-Load `figma-use`. Run a read-only discovery call before creating keyword text:
+When a validated master exists, inherit its established font and skip `listAvailableFontsAsync()` during normal runs.
 
-```js
-const fonts = await figma.listAvailableFontsAsync()
-const albertus = fonts
-  .map(f => f.fontName)
-  .filter(f => f.family.toLowerCase() === 'albertus nova')
-return { albertus }
-```
+Run font discovery only when repairing/creating the master, when the inherited font is missing, or when the user requests another family.
 
 Choose the heaviest upright Albertus Nova style using this preference order when present:
 
@@ -86,6 +80,7 @@ The master must contain:
 - fixed brand-logo image layers;
 - hidden optional `Title Support` layers;
 - the 24 px combined-preview gap and correctly scaled square preview.
+- one hidden `Source Upload Cache` rectangle for a single ordinary-source upload.
 
 When practical, perform master duplication, keyword replacement, font sizing, title positioning, optional-support configuration, and export-setting updates in one `use_figma` call. Return every mutated node ID. Do not edit text until the selected font has been loaded.
 
@@ -95,12 +90,19 @@ Set export settings on the three top-level outputs to PNG at scale 1.
 
 ## 5. Upload the image assets
 
-Use Figma `upload_assets` with the target node ID:
+For the normal direct-crop route:
 
-- upload each prepared background to its matching `Background` node using `FILL`;
+- upload the original image once to the master’s hidden `Source Upload Cache`;
+- capture the HTTP response’s `imageHash`;
+- assign that same hash to landscape and square `Background` fills in `use_figma`;
+- use separate `scaleMode: "CROP"` paints and `imageTransform` values to preserve proportions while independently moving/scaling each format’s focal crop.
+
+For routes that genuinely produce different rasters or separated elements, upload only those required assets:
+
+- upload each prepared extended background to its matching `Background` node;
 - in company-logo mode, upload the trimmed company logo to each `Center Content` image node using `FIT`.
 
-Upload the same source separately for each target node when required by the tool's single-use upload URL contract.
+Do not upload the same ordinary source separately to landscape and square.
 
 The master already contains the fixed brand logo. Do not request new upload URLs or upload the bundled logo during a normal run. Upload it only while creating or repairing the master.
 
@@ -133,21 +135,22 @@ First evaluate keyword/company-logo legibility with `Title Support` hidden.
 
 Apply the specified shadow only where the white logo lacks contrast. Reassign the full effects array; do not mutate it in place.
 
-## 8. Combined preview
+## 8. Batched layout and combined preview
 
-After the two main covers are correct:
+For the normal route, prefer one `use_figma` mutation after the source upload:
 
-1. Clone the landscape frame into the combined frame at its original size.
-2. Clone the square frame.
-3. Rescale the square clone by `383 / 900`.
-4. Position it at x = 924, y = 0.
-5. Keep the combined frame white and 1307 × 383.
+1. Duplicate and rename the master Section.
+2. Apply the shared `imageHash` with independent crop transforms.
+3. Update keyword, font size, line height, tracking, and alignment.
+4. Decide and configure title support for each format.
+5. Configure the brand-logo shadow from local contrast.
+6. Rebuild the combined preview: landscape at 900 × 383, square rescaled by `383 / 900` at x = 924, with a 24 px white gap.
 
 Return IDs for the combined frame and both clones.
 
 ## 9. Visual validation
 
-Default to one screenshot of the final combined preview. Request individual landscape or square screenshots only if the combined preview indicates a risk or if 100% inspection is necessary for masks or fine detail. Fix:
+Default to one inline screenshot or one screenshot of the final combined preview. Request individual landscape or square screenshots only if the combined preview indicates a crop, obstruction, low-contrast, masking, or fine-detail risk. Fix:
 
 - cropping that hides the subject;
 - adaptation that changes the source style, colors, lighting, materials, text, or object geometry;
@@ -166,13 +169,15 @@ Do not proceed to export on a failed validation.
 
 ## 10. Export and deep links
 
-Use `download_assets` once per top-level output frame for the standard deliverables:
+Request the three `download_assets` calls in parallel for the standard deliverables, then download their URLs in parallel:
 
 - `defaultScale: 1` for the standard PNG;
 
 Use `defaultScale: 2` only when the user requests high-resolution/final delivery, the output has a known larger downstream use, or the standard export exposes a real raster-quality concern.
 
 Save each exported PNG with the names specified in `SKILL.md`.
+
+Do not validate the Skill package, sync a desktop copy, or touch GitHub during a normal image run. Those are maintenance actions for actual Skill-file changes only.
 
 Construct deep links from the active file URL by adding `node-id=<normalized-id>`, replacing `:` with `-` in the query value. Preserve any required Figma URL structure.
 

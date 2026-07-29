@@ -31,6 +31,17 @@ Do not assume centered content needs a background. First use the image's natural
 
 Use the least destructive strategy that creates a balanced cover:
 
+### Routing matrix
+
+Classify the source before entering Figma:
+
+1. **Direct proportional crop** — Use when separate landscape and square crops retain the meaningful subject. Upload the original once, reuse one Figma `imageHash`, and apply independent `CROP` transforms/focal positions. This is the normal fast path.
+2. **Source-derived canvas extension** — Use when cropping would remove important content and the edge background is white, solid, or a simple gradient. Extend that background, then proportionally resize and reposition the intact subject.
+3. **Element recomposition** — Use when multiple meaningful elements need new relationships. Separate only what is needed, preserve every element’s proportions, and recompose on an extended canvas or in Figma.
+4. **Image edit or generative extension** — Use only when a photograph, complex texture, or spatial scene needs content that does not exist in the source. Extend in the same image-making style before adding titles and brand elements in Figma.
+
+Do not interpret an aspect-ratio change as permission to stretch the image. Limited non-uniform widening is acceptable only for pure texture or gradient background regions with no deformation-sensitive content. Never deform a person, product, logo, word, chart, screenshot, illustration, or geometric object.
+
 ### Native crop
 
 Use when the source already has a strong focal point and the crop preserves all important information.

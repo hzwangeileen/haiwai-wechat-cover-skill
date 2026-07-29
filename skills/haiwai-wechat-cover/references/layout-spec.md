@@ -30,6 +30,8 @@ Place the Section itself to the right of the rightmost existing top-level page n
 - Use a source-derived solid extension for simple or nearly uniform backgrounds when a cover crop would cut important content.
 - Use a source-derived blurred extension only for photographic or textured backgrounds.
 - Never stretch the source image.
+- Treat a vertical-to-horizontal conversion as crop, canvas extension, or recomposition—not horizontal stretching.
+- Permit limited non-uniform widening only for pure texture or gradient background regions containing no subject, object, text, logo, or geometry that can visibly deform.
 - Preserve the original style, palette, lighting, material appearance, typography, and object geometry.
 - Never redraw or generatively restyle the subject merely to fit the target ratio.
 

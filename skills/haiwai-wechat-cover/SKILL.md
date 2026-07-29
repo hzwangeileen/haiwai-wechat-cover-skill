@@ -13,7 +13,7 @@ Create every cover in the designated editable Figma workspace, then export produ
 
 Use the bundled white 海外独角兽 logo. Keep the selected background, central keyword or company logo, and brand logo as separate editable Figma layers.
 
-Use one default high-quality workflow. Do not expose or invent separate “fast”, “standard”, or “refined” modes. Improve speed by reusing the Figma master, batching safe mutations, and limiting QA/export work without lowering the visual bar.
+Use one default high-quality workflow. Do not expose or invent separate “fast”, “standard”, or “refined” modes. Aim to complete ordinary sources in roughly 2–3 minutes by reusing the Figma master, uploading assets only when necessary, batching safe mutations, and limiting QA/export work. Let complex sources take longer; never trade deformation, crude cropping, weak hierarchy, or a generic look for speed.
 
 ## Required inputs
 
@@ -112,6 +112,15 @@ Never require the uploaded source to match either WeChat output ratio. Treat mis
 
 “Compression” means proportional resizing and sensible file-size optimization. Never stretch width and height independently, squash objects, alter proportions, or lower image quality enough to create visible artifacts.
 
+Classify the source before choosing tools. Follow the routing matrix in [references/design-principles.md](references/design-principles.md):
+
+1. If proportional cropping preserves the subject, upload the original once and reuse its Figma `imageHash` for both formats with independent crop transforms and focal positions.
+2. If cropping loses the subject and the background is white, solid, or a simple gradient, extend that background and proportionally scale/reposition the subject.
+3. If several elements need new relationships, separate only the necessary elements and proportionally recompose them.
+4. If a photograph, complex texture, or spatial scene genuinely needs unseen content, perform a style-preserving image edit or generative extension before Figma layout.
+
+Interpret “turn this vertical image into a horizontal image” as extending or reconstructing the composition, never as horizontally stretching the whole image. Allow limited non-uniform widening only for pure, deformation-safe texture or gradient backgrounds. Never deform people, products, text, logos, charts, screenshots, illustrations, or geometric objects.
+
 Create exact-size background rasters with `scripts/prepare_image.py`:
 
 - Use `cover` with a visually chosen focal point when cropping preserves the subject.
@@ -120,7 +129,7 @@ Create exact-size background rasters with `scripts/prepare_image.py`:
 
 Adapt the aspect ratio without changing the original visual style. Cropping, repositioning, proportional scaling, and source-derived canvas extension are allowed. Preserve the source's palette, lighting, materials, typography, object geometry, and photographic or illustrative treatment.
 
-Do not redraw, restyle, replace, or generatively reinterpret the subject. Do not use generative expansion unless the user explicitly requests it; even then, preserve the original style and never alter logos, charts, screenshots, products, text, or other detail-sensitive content.
+Do not redraw, restyle, replace, or generatively reinterpret the subject. Use generative extension only when the routing matrix identifies missing photographic, textured, or spatial content that cannot be solved with a crop or source-derived extension. Preserve the original style and protect logos, charts, screenshots, products, text, faces, and other detail-sensitive content.
 
 When a contained source overlaps the centered keyword or logo, reduce its scale proportionally and align the intact source toward an edge of the extended canvas. Keep the active format's central footprint visually clear whenever possible.
 
@@ -142,6 +151,7 @@ Find the top-level Section named `海外独角兽封面｜MASTER`. Duplicate its
 - fixed 海外独角兽 logo layers, safe margins, and logo shadow defaults;
 - reusable centered keyword/company-logo containers;
 - an optional title-support layer that is hidden by default.
+- a hidden `Source Upload Cache` image node used to upload an ordinary source once and capture its reusable `imageHash`.
 
 Do not upload the fixed brand logo again when the master is available. Replace only source-specific image/company-logo fills and text. If the master is missing or structurally invalid, create or repair it once from the bundled assets, then continue from that master.
 
@@ -170,9 +180,9 @@ Within each main cover, create named layers:
 
 For keyword mode:
 
-1. Call `listAvailableFontsAsync()`.
-2. Prefer `Albertus Nova` and its heaviest suitable upright style.
-3. If unavailable, use exactly `Alegreya ExtraBold`.
+1. When a validated master exists, inherit its established font without repeating font discovery on every run.
+2. Search fonts only when creating/repairing the master, the inherited font is missing, or the user explicitly requests another family.
+3. When discovery is required, prefer `Albertus Nova`; otherwise use exactly `Alegreya ExtraBold`.
 4. Default to black or white based on contrast at the center of the image.
 5. Apply user-specified highlight colors only to the specified ranges.
 6. Report the actual font used and whether fallback occurred.
@@ -185,7 +195,7 @@ For company-logo mode:
 
 Construct the combined preview after the two main covers pass visual QA. Clone the completed covers: keep the landscape at 900 × 383, scale the square clone to 383 × 383, and separate them with a 24 px white gap.
 
-Whenever practical, use one `use_figma` call to duplicate the master, update text, apply title sizing/layout, configure title support, and return all affected node IDs. Do not split actions into multiple calls when they are safely expressible as one mutation.
+On the ordinary single-image route, capture the upload response’s `imageHash`, then use one `use_figma` call whenever practical to duplicate the master, assign independently cropped background fills to both formats, update text/size/line height, configure adaptive title support, set logo shadows, rebuild the combined preview, and return all affected node IDs.
 
 ## Validate and export
 
@@ -221,6 +231,8 @@ Export PNGs with these names:
 - `<slug>-wechat-square-900x900.png`
 - `<slug>-wechat-combined-1307x383.png`
 
+Request and download the three 1× exports in parallel.
+
 Export 2× high-resolution masters only when the user requests high-resolution/final delivery, the asset will be repurposed beyond normal WeChat display, or 1× inspection reveals a genuine raster-quality risk:
 
 - `<slug>-wechat-landscape-1800x766@2x.png`
@@ -236,3 +248,5 @@ Return:
 5. a brief note if fallback font, blurred extension, or any other adaptive treatment was used.
 
 Do not claim an export or Figma link exists until the corresponding tool call succeeds.
+
+Do not run Skill validation, sync a desktop copy, commit, or push GitHub during ordinary cover production. Perform those maintenance actions only when the Skill files themselves changed.
