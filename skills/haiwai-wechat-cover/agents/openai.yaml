@@ -1,0 +1,9 @@
+interface:
+  display_name: "海外独角兽微信封面"
+  short_description: "生成横图、方图及组合预览，并保留可编辑 Figma 文件"
+  default_prompt: "Use $haiwai-wechat-cover to turn my selected image and keyword or company logo into branded WeChat covers."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "figma"
+      description: "Create editable cover layouts, export PNG assets, and return Figma links."

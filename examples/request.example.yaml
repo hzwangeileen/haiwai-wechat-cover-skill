@@ -1,0 +1,33 @@
+skill: haiwai-wechat-cover
+
+source_image: "./input.png"
+
+center_content:
+  mode: keyword
+  text: "Agent Identity"
+  color: auto
+  highlights: []
+
+# 公司 Logo 模式示例：
+# center_content:
+#   mode: company_logo
+#   file: "./company-logo.png"
+
+preserve:
+  - primary_subjects
+  - embedded_text
+  - logos
+  - product_geometry
+  - materials
+  - lighting
+  - original_style
+
+outputs:
+  landscape: true
+  square: true
+  combined: true
+  scale_2x: true
+  figma_links: true
+
+# 没有默认工作区权限时，用自己的 Figma Design 文件覆盖：
+# figma_file_url: "https://www.figma.com/design/..."
