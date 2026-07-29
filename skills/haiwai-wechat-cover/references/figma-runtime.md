@@ -113,7 +113,9 @@ For keyword mode:
 - load the chosen font;
 - create the text in both covers;
 - fit it into 360 × 150 px in landscape or 500 × 230 px in square;
-- start short two-line titles near 70 px / 66 px line height in landscape and 100 px / 92 px line height in square, then adjust optically;
+- start short two-line titles near 64 px / 72 px line height in landscape and 88 px / 100 px line height in square, then adjust optically;
+- use neutral tracking by default; add negative tracking only when the letterforms remain visibly open;
+- preserve comfortable space between the two lines and at least roughly half a cap-height of optical padding inside any title-support layer;
 - use explicit range styling for highlighted terms;
 - center geometrically after final sizing;
 - return all created or mutated node IDs.

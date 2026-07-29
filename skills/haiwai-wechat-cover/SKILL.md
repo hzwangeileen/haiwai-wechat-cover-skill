@@ -64,6 +64,7 @@ Core rules:
 - Keep sizing consistent across runs within each format. The square content is intentionally larger because it is reduced more aggressively in share cards and the combined preview.
 - Preserve logo aspect ratios. Never stretch, crop, or distort a company logo.
 - Prefer a single keyword line. Allow at most two lines; shrink long text instead of exceeding the footprint.
+- Give two-line titles visible breathing room. Do not use line height smaller than the font size or negative tracking by default. Reduce type size before tightening line spacing, tracking, or support-layer padding.
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
 - Treat any title background, plate, gradient, blur, or local weakening as optional. First test the title directly on the composition. Add support only when it materially improves legibility, hierarchy, or beauty; never add it merely because another cover used one.
@@ -210,6 +211,7 @@ Check:
 - no cutout halo, foreign fragment, polygon edge, or background mismatch is visible at 100%.
 - any title support is demonstrably necessary, source-coordinated, and no larger or heavier than needed;
 - no unnecessary title support obscures useful artwork or makes the cover feel templated.
+- two-line titles do not feel vertically compressed, tightly tracked, or crowded against their support boundary.
 
 Fix issues before exporting.
 

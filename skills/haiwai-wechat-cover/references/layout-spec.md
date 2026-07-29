@@ -53,7 +53,10 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 - Font preference: Albertus Nova, then Alegreya ExtraBold.
 - Upright style only; no italics.
 - Single line preferred; two lines maximum.
-- Use confident type size and comfortable line spacing for short two-line titles. As a starting point with Alegreya ExtraBold, use about 70 px with 66 px line height in landscape and 100 px with 92 px line height in square, then adjust optically.
+- Use confident type size without making the title feel packed. As a starting point with Alegreya ExtraBold, use about 64 px with 72 px line height in landscape and 88 px with 100 px line height in square, then adjust optically.
+- Keep two-line line height at least equal to the font size; generally prefer about 1.08–1.16×.
+- Use neutral tracking by default. Do not apply negative tracking merely to make the title larger.
+- When a support layer is present, preserve generous optical padding on all sides; reduce the title before squeezing its padding.
 - Shrink long text to fit; never exceed the active format's footprint.
 - Default color: black or white, whichever has stronger local contrast.
 - Apply explicit highlight colors only when requested.
