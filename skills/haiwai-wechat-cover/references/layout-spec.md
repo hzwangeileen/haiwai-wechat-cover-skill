@@ -35,6 +35,8 @@ Place the Section itself to the right of the rightmost existing top-level page n
 - Permit limited non-uniform widening only for pure texture or gradient background regions containing no subject, object, text, logo, or geometry that can visibly deform.
 - Preserve the original style, palette, lighting, material appearance, typography, and object geometry.
 - Never redraw or generatively restyle the subject merely to fit the target ratio.
+- Default to minimum necessary recomposition: preserve overall source relationships and try proportional scaling, repositioning, small cropping, native-background extension, or moving one or two key elements before any multi-element separation.
+- Do not split or rebuild a composition when movement or canvas extension solves the title-zone problem.
 
 ## Central content
 

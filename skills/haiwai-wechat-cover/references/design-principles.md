@@ -31,14 +31,19 @@ Do not assume centered content needs a background. First use the image's natural
 
 Use the least destructive strategy that creates a balanced cover:
 
+Apply a minimum-necessary-recomposition rule before the routing matrix: preserve the source's overall relationships first. Try proportional scaling, position adjustment, small cropping, native-background extension, or moving one or two key elements before separating multiple elements. If movement is sufficient, do not split. If the overall composition can be retained, do not rebuild it. Multi-element separation is a last resort, not a demonstration of capability.
+
+Treat ordinary aspect-ratio adaptation as a lightweight path. A mismatched canvas is not evidence that the source needs separation. Estimate complexity before production: if a plan needs more than two source uploads or more than two Figma layout rounds, reassess crop, focal position, native-background extension, proportional contain, or local weakening first.
+
 ### Routing matrix
 
 Classify the source before entering Figma:
 
 1. **Direct proportional crop** — Use only when each crop retains at least roughly 60% of the meaningful composition and preserves all priority elements. Reject it when important content spans both the top and bottom and cannot survive together. When accepted, upload the original once, reuse one Figma `imageHash`, and apply independent `CROP` transforms/focal positions.
 2. **Source-derived canvas extension** — Use when cropping would remove important content and the edge background is white, solid, or a simple gradient. Extend that background, then proportionally resize and reposition the intact subject.
-3. **Element recomposition** — Use when multiple meaningful elements need new relationships. Separate only what is needed, preserve every element’s proportions, and recompose on an extended canvas or in Figma.
-4. **Image edit or generative extension** — Use only when a photograph, complex texture, or spatial scene needs content that does not exist in the source. Extend in the same image-making style before adding titles and brand elements in Figma.
+3. **Light key-element movement** — Use when moving one or two elements creates a stable title zone while the source's overall relationships remain recognizable.
+4. **Multi-element recomposition** — Use only when the lighter strategies still cannot preserve the subject, title readability, and compositional balance together. Separate the minimum number of elements, preserve their proportions, and retain the original visual relationships wherever possible.
+5. **Image edit or generative extension** — Use only when a photograph, complex texture, or spatial scene needs content that does not exist in the source. Extend in the same image-making style before adding titles and brand elements in Figma.
 
 Do not interpret an aspect-ratio change as permission to stretch the image. Limited non-uniform widening is acceptable only for pure texture or gradient background regions with no deformation-sensitive content. Never deform a person, product, logo, word, chart, screenshot, illustration, or geometric object.
 

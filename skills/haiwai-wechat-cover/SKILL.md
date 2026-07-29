@@ -106,6 +106,8 @@ Use `scripts/prepare_image.py extract-polygon` only when a composite source trul
 
 The example layout for one source must never become the default template for another source.
 
+Default to minimum necessary recomposition. Preserve the source's overall relationships whenever possible. Prefer, in order: proportional scaling, position adjustment, small crops, extension of the native background, or moving one or two key elements to open a clear title zone. If moving solves the problem, do not split the image. If the overall composition can survive, do not rebuild it. Use multi-element separation and rearrangement only when lighter adjustments still cannot preserve the subject, title readability, and compositional balance together. Never redesign a source merely to demonstrate recomposition.
+
 ## Prepare the images
 
 Inspect the source image before deciding how to fit it.
@@ -118,8 +120,11 @@ Classify the source before choosing tools. Follow the routing matrix in [referen
 
 1. If proportional cropping preserves the subject, upload the original once and reuse its Figma `imageHash` for both formats with independent crop transforms and focal positions.
 2. If cropping loses the subject and the background is white, solid, or a simple gradient, extend that background and proportionally scale/reposition the subject.
-3. If several elements need new relationships, separate only the necessary elements and proportionally recompose them.
-4. If a photograph, complex texture, or spatial scene genuinely needs unseen content, perform a style-preserving image edit or generative extension before Figma layout.
+3. If only the title zone is blocked, move or locally weaken one or two elements; do not split the whole image.
+4. Only when multiple subjects genuinely cannot be retained together, separate the minimum number of elements and proportionally recompose them.
+5. If a photograph, complex texture, or spatial scene genuinely needs unseen content, perform a style-preserving image edit or generative extension before Figma layout.
+
+Ordinary sources must default to this lightweight adaptation path. Never escalate an aspect-ratio mismatch by itself into element separation or complex recomposition. If the proposed approach requires more than two source-asset uploads or more than two Figma layout rounds, stop and reassess whether proportional scaling, focal-point adjustment, native-background extension, or local weakening can solve it.
 
 Interpret “turn this vertical image into a horizontal image” as extending or reconstructing the composition, never as horizontally stretching the whole image. Allow limited non-uniform widening only for pure, deformation-safe texture or gradient backgrounds. Never deform people, products, text, logos, charts, screenshots, illustrations, or geometric objects.
 

@@ -95,7 +95,9 @@ For the normal direct-crop route:
 - upload the original image once to the master’s hidden `Source Upload Cache`;
 - capture the HTTP response’s `imageHash`;
 - assign that same hash to landscape and square `Background` fills in `use_figma`;
-- use separate `scaleMode: "CROP"` paints and `imageTransform` values to preserve proportions while independently moving/scaling each format’s focal crop.
+- use separate `scaleMode: "CROP"` paints and `imageTransform` values to preserve proportions while independently moving/scaling each format's focal crop.
+
+Ordinary sources should upload once and reuse the same `imageHash` across both formats. If a proposed ordinary-source solution requires more than two uploaded source assets or more than two Figma layout rounds, pause and simplify the adaptation before proceeding.
 
 For routes that genuinely produce different rasters or separated elements, upload only those required assets:
 
