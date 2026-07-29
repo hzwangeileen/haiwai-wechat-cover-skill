@@ -13,7 +13,15 @@ Create every cover in the designated editable Figma workspace, then export produ
 
 Use the bundled white 海外独角兽 logo. Keep the selected background, central keyword or company logo, and brand logo as separate editable Figma layers.
 
-Use one default high-quality workflow. Do not expose or invent separate “fast”, “standard”, or “refined” modes. Aim to complete ordinary sources in roughly 2–3 minutes by reusing the Figma master, uploading assets only when necessary, batching safe mutations, and limiting QA/export work. Let complex sources take longer; never trade deformation, crude cropping, weak hierarchy, or a generic look for speed.
+Use one default high-quality workflow. Do not expose or invent separate “fast”, “standard”, or “refined” modes. Aim to complete ordinary sources in roughly 2–3 minutes by reusing the fixed Figma master, uploading assets only when necessary, batching safe Figma mutations, and limiting QA/export work. Let complex sources take longer; never trade deformation, crude cropping, weak hierarchy, or a generic look for speed.
+
+Optimize for useful visual quality per minute. Spend time only on changes that materially improve:
+
+1. subject completeness;
+2. title readability;
+3. compositional balance and visual integration.
+
+Choose the cheapest reversible treatment that clears all three gates. Stop designing once the combined preview is attractive, clear, balanced, and free of visible defects. Do not add layers, effects, masks, gradients, alternate versions, or extra inspection passes merely to make the process appear more refined.
 
 ## Required inputs
 
@@ -23,26 +31,28 @@ Require:
 2. Exactly one central-content mode:
    - keyword text; or
    - company logo image.
-3. One editable Figma Design file URL.
 
 Accept optional:
 
 - highlighted keyword ranges and explicit colors, such as `AI=#B51F2A`;
 - focal-point or subject-preservation instructions;
+- a Figma team override;
 - an output directory.
 
 Ask only for missing required inputs. Apply the defaults below without repeatedly reconfirming them.
 
 ## Load runtime guidance
 
-Before editing the Figma workspace:
+For an ordinary single-image source with an obvious lightweight adaptation route:
 
-1. Read [references/design-principles.md](references/design-principles.md).
-2. Read [references/figma-runtime.md](references/figma-runtime.md).
+1. Read [references/figma-runtime.md](references/figma-runtime.md) and [references/layout-spec.md](references/layout-spec.md).
+2. Apply the core design rules in this `SKILL.md` without loading extra references.
 3. Load the `figma-use` skill before every Figma `use_figma` call.
-4. Discover deferred Figma tools when needed: `use_figma`, `upload_assets`, and `download_assets`.
+4. Discover deferred Figma tools only when needed: `use_figma`, `upload_assets`, and `download_assets`.
 
-Require a connected Figma MCP with edit access to the active file. If it is unavailable, disconnected, or read-only, ask the user for an editable Figma Design URL or corrected access and stop before producing a partial package.
+Read [references/design-principles.md](references/design-principles.md) only when crop versus extension is genuinely ambiguous, multiple subjects conflict, light adaptation cannot create a stable title zone, or the first combined-preview QA fails for a compositional reason.
+
+Require a connected Figma MCP with edit access to the designated file. If it is unavailable, disconnected, or read-only, ask the user to fix access and stop before producing a partial package.
 
 Resolve the directory containing this `SKILL.md` as the skill directory. Use:
 
@@ -68,6 +78,7 @@ Core rules:
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
 - Treat any title background, plate, gradient, blur, or local weakening as optional. First test the title directly on the composition. Add support only when it materially improves legibility, hierarchy, or beauty; never add it merely because another cover used one.
+- Do not default to a white gradient. If direct text is readable, use no support. If support is needed, first try a compact square or rectangular translucent plate whose neutral or source-sampled color belongs to the image. Use a gradient, blur, or broader tonal veil only when a simple plate cannot integrate cleanly.
 - Treat all other composition positions, scales, crops, and element relationships as source-specific design decisions, not a template.
 
 ## Design from first principles
@@ -87,16 +98,18 @@ Before editing:
    - restrained cleanup or tonal balancing that preserves the original style.
 5. Reject layouts with weak balance, accidental collisions, excessive dead space, or a subject merely squeezed into a corner.
 
+Make this decision once for an ordinary source. Prefer, in order: independent proportional crops with focal adjustment; proportional containment on an extended source-color canvas; movement or weakening of one local conflict; multi-element separation only when the first three cannot satisfy the quality gates. Do not generate speculative alternatives unless the first combined preview fails.
+
 For landscape covers, never confine all meaningful source content to only the left or right outer third while the opposite side remains visually empty. Asymmetry is allowed, but the visual mass must cross the center axis, distribute through upper/lower zones, or gain a genuine counterweight from another source element. The centered title and empty space alone do not count as sufficient counterweight. Prefer a centered proportional crop or a source-wide distribution before moving the entire image group to one side.
 
 For title legibility, judge the final composition in this order:
 
 1. Use natural negative space with no title backing when contrast and hierarchy are already strong.
 2. Reposition or reframe source elements when that creates a better title zone without harming the subject.
-3. Only when necessary, add the least intrusive coordinated support: a small source-colored plate, restrained gradient, local blur, tonal veil, or local weakening.
+3. Only when necessary, add the least intrusive coordinated support: first a compact translucent solid plate, preferably neutral or sampled from the source; then local weakening; use a restrained gradient or blur only as a last resort.
 4. Size and shape that support for the current source. Do not reuse a fixed white rounded rectangle, opacity, radius, or footprint across unrelated images.
 
-The absence of a title backing is not a goal by itself, and the presence of one is not a quality signal. The test is whether the whole cover feels intentional, premium, and immediately readable.
+The absence of a title backing is not a goal by itself, and the presence of one is not a quality signal. The test is whether the whole cover feels intentional, premium, immediately readable, and visually integrated with the source rather than carrying a generic pasted-on label.
 
 Require a stable low-interference reading zone for every title. Do not solve a noisy title area merely by increasing font size or weight. If letterforms cross rapidly alternating light/dark regions, saturated color changes, dense edges, or embedded source text, reframe or recompose the artwork first; add restrained local support only when the composition still needs it.
 
@@ -150,11 +163,14 @@ The utility requires Pillow. If the active Python cannot import `PIL`, use the C
 
 For a company logo, run the same script in `trim-alpha` mode before upload. The script removes transparent padding and adds a small clean margin. If the logo has an opaque background, preserve it and do not guess at background removal.
 
-## Use the supplied Figma workspace
+## Use the fixed Figma workspace
 
-Use the editable Figma Design URL supplied by the user. Extract its file key and use the same active file for every Figma operation and returned deep link.
+Use this Figma Design file and its reusable master for every run:
 
-Do not create a new Figma file automatically. Do not overwrite prior outputs.
+- file key: `EipE7fkEv9xLOzqX7yqSAP`
+- URL: `https://www.figma.com/design/EipE7fkEv9xLOzqX7yqSAP/Untitled`
+
+Do not create a new Figma file. Do not overwrite prior outputs.
 
 Find the top-level Section named `海外独角兽封面｜MASTER`. Duplicate its landscape, square, and combined frames into a new run-specific Section. The master owns:
 
@@ -164,7 +180,7 @@ Find the top-level Section named `海外独角兽封面｜MASTER`. Duplicate its
 - an optional title-support layer that is hidden by default.
 - a hidden `Source Upload Cache` image node used to upload an ordinary source once and capture its reusable `imageHash`.
 
-Do not upload the fixed brand logo again when the master is available. Replace only source-specific image/company-logo fills and text. If the master is missing or structurally invalid, create or repair it once from the bundled assets, then continue from that master.
+Do not upload the fixed brand logo again when the master is available. Replace only source-specific image/company-logo fills and text. If the master is missing or structurally invalid, repair it once from the bundled assets, then continue from the repaired master.
 
 Create a new top-level Section named:
 
@@ -191,8 +207,8 @@ Within each main cover, create named layers:
 
 For keyword mode:
 
-1. When a validated master exists, inherit its established font without repeating font discovery on every run.
-2. Search fonts only when creating/repairing the master, the inherited font is missing, or the user explicitly requests another family.
+1. In the fixed workspace, use the master’s established `Alegreya ExtraBold` without repeating font discovery on every run.
+2. Search fonts only when repairing the master, the inherited font is missing, or the user explicitly requests another family.
 3. When discovery is required, prefer `Albertus Nova`; otherwise use exactly `Alegreya ExtraBold`.
 4. Default to black or white based on contrast at the center of the image.
 5. Apply user-specified highlight colors only to the specified ranges.
@@ -206,11 +222,11 @@ For company-logo mode:
 
 Construct the combined preview after the two main covers pass visual QA. Clone the completed covers: keep the landscape at 900 × 383, scale the square clone to 383 × 383, and separate them with a 24 px white gap.
 
-On the ordinary single-image route, capture the upload response’s `imageHash`, then use one `use_figma` call whenever practical to duplicate the master, assign independently cropped background fills to both formats, update text/size/line height, configure adaptive title support, set logo shadows, rebuild the combined preview, and return all affected node IDs.
+On the ordinary single-image route, capture the upload response’s `imageHash`, then use one atomic `use_figma` call to validate the master, compute the next clear canvas position, duplicate the master, assign independently cropped background fills to both formats, update text/size/line height, configure adaptive title support, set logo shadows, rebuild the combined preview, capture its QA screenshot, and return all affected node IDs. Do not make a separate read-only Figma preflight or split actions into multiple calls unless this atomic call fails because the master is missing, invalid, or inaccessible.
 
 ## Validate and export
 
-By default, visually inspect the final combined preview in Figma. Inspect an individual landscape or square frame only when the combined preview reveals or suggests cropping, masking, contrast, readability, logo, or safe-margin risk that cannot be judged reliably at the reduced size.
+By default, visually inspect the final combined preview using the screenshot returned by the main mutation call. Do not make a separate screenshot or metadata call when that preview is sufficient. Inspect an individual landscape or square frame only when the combined preview reveals or suggests cropping, masking, contrast, readability, logo, or safe-margin risk that cannot be judged reliably at the reduced size.
 
 Check:
 
@@ -232,11 +248,14 @@ Check:
 - no large neutral region dominates the frame without a deliberate compositional purpose;
 - no cutout halo, foreign fragment, polygon edge, or background mismatch is visible at 100%.
 - any title support is demonstrably necessary, source-coordinated, and no larger or heavier than needed;
+- no white gradient appears by habit; direct text or a compact translucent solid plate is preferred whenever it reads clearly and blends better;
 - no unnecessary title support obscures useful artwork or makes the cover feel templated.
 - two-line titles do not feel vertically compressed, tightly tracked, or crowded against their support boundary.
 - title letterforms do not cross rapidly changing light/dark regions, multiple saturated colors, dense edges, or embedded source text.
 
 Fix issues before exporting.
+
+For an ordinary source, allow at most one targeted Figma correction call after the combined-preview QA. If a second correction appears necessary, reassess whether proportional scaling, crop focus, source-color extension, or simpler title support can solve the problem before adding more layers or calls.
 
 Export PNGs with these names:
 
@@ -255,11 +274,11 @@ Export 2× high-resolution masters only when the user requests high-resolution/f
 Return:
 
 1. links or paths to all exported PNGs;
-2. the active Figma workspace URL;
+2. the fixed Figma workspace URL;
 3. direct `node-id` links to all three output frames;
 4. the font actually used;
 5. a brief note if fallback font, blurred extension, or any other adaptive treatment was used.
 
 Do not claim an export or Figma link exists until the corresponding tool call succeeds.
 
-Do not run Skill validation, sync a desktop copy, commit, or push GitHub during ordinary cover production. Perform those maintenance actions only when the Skill files themselves changed.
+Do not run Skill validation, sync the desktop copy, commit, or push GitHub during ordinary cover production. Perform those maintenance actions only when the Skill files themselves changed.

@@ -1,28 +1,31 @@
 # Figma runtime
 
-Use this reference for every run.
+Use this reference for every run. Load `design-principles.md` only for ambiguous or complex compositions as directed by `SKILL.md`.
 
-Read `design-principles.md` before choosing the layout.
+Treat speed as removal of non-value work, not removal of quality. For ordinary sources, make one layout decision, one source upload, one atomic Figma mutation, one combined-preview judgment, and one parallel export batch. Add work only when a visible defect blocks subject completeness, title readability, or compositional balance.
 
-## 1. Open the supplied workspace
+## 1. Open the fixed workspace
 
-Require a user-provided editable Figma Design URL. Extract the active file key from that URL and use it consistently for every Figma call and deep link in the run.
+Use:
+
+- file key: `EipE7fkEv9xLOzqX7yqSAP`
+- file URL: `https://www.figma.com/design/EipE7fkEv9xLOzqX7yqSAP/Untitled`
 
 Do not call `create_new_file`.
 
-Start with a read-only `use_figma` call:
+For an ordinary run, do not start with a separate read-only `use_figma` call. In the first atomic mutation:
 
-- verify the file is accessible;
-- inspect top-level page nodes;
+- verify the file is accessible and editable;
 - find and validate the reusable top-level Section `海外独角兽封面｜MASTER`;
-- find the rightmost occupied x-coordinate;
-- return the target x-coordinate for the new run Section with at least 200 px clearance.
+- scan top-level bounds and compute a target x-coordinate with at least 200 px clearance;
+- duplicate the master directly into that clear position;
+- perform the complete content update described below.
 
-Stop if the file is unavailable or read-only.
+Because `use_figma` is atomic, let the call fail cleanly if the file or master is unavailable, read-only, missing, or invalid. Only then use a separate inspection call to diagnose or repair the workspace.
 
 ## 2. Font handling
 
-When a validated master exists, inherit its established font and skip `listAvailableFontsAsync()` during normal runs.
+The fixed master has already established `Alegreya ExtraBold`. In normal runs, inherit or load that exact font directly and skip `listAvailableFontsAsync()`.
 
 Run font discovery only when repairing/creating the master, when the inherited font is missing, or when the user requests another family.
 
@@ -82,7 +85,7 @@ The master must contain:
 - the 24 px combined-preview gap and correctly scaled square preview.
 - one hidden `Source Upload Cache` rectangle for a single ordinary-source upload.
 
-When practical, perform master duplication, keyword replacement, font sizing, title positioning, optional-support configuration, and export-setting updates in one `use_figma` call. Return every mutated node ID. Do not edit text until the selected font has been loaded.
+Perform master validation, clear-position calculation, duplication, keyword replacement, font sizing, title positioning, optional-support configuration, combined-preview rebuilding, export-setting updates, and the combined QA screenshot in one `use_figma` call for an ordinary run. Return every mutated node ID. Do not edit text until the selected font has been loaded.
 
 Place the Section at the discovered clear page position. Use the non-overlapping child positions declared in `layout-spec.md`. Resize the Section from actual child bounds after its contents are complete.
 
@@ -132,7 +135,10 @@ First evaluate keyword/company-logo legibility with `Title Support` hidden.
 
 - Leave it hidden when natural negative space and contrast are sufficient.
 - Reject title placement over rapidly alternating colors, dense edges, embedded text, or multiple high-saturation regions. Recompose the artwork to create a stable reading zone before adding support.
-- If support is necessary, adapt its shape, size, color, opacity, blur/gradient treatment, and radius to the current source.
+- Never add a white gradient by default.
+- If support is necessary, first use a compact square or rectangular translucent solid plate, with a neutral or source-sampled color that visually belongs to the artwork.
+- Use local weakening next. Use a restrained gradient or blur only when direct text and a compact solid plate both fail to integrate cleanly.
+- Adapt support shape, size, color, opacity, and radius to the current source.
 - Prefer the smallest intervention that stabilizes readability and improves the overall composition.
 - Never default to a fixed white rounded rectangle.
 
@@ -142,20 +148,22 @@ During QA, fail the cover if individual letterforms lose clarity as they cross s
 
 ## 8. Batched layout and combined preview
 
-For the normal route, prefer one `use_figma` mutation after the source upload:
+For the normal route, use one atomic `use_figma` mutation after the source upload:
 
-1. Duplicate and rename the master Section.
-2. Apply the shared `imageHash` with independent crop transforms.
-3. Update keyword, font size, line height, tracking, and alignment.
-4. Decide and configure title support for each format.
-5. Configure the brand-logo shadow from local contrast.
-6. Rebuild the combined preview: landscape at 900 × 383, square rescaled by `383 / 900` at x = 924, with a 24 px white gap.
+1. Validate the fixed master, compute the rightmost occupied bound, and choose the clear target position.
+2. Duplicate and rename the fixed master Section.
+3. Apply the shared `imageHash` with independent crop transforms.
+4. Update keyword, font size, line height, tracking, and alignment.
+5. Decide and configure title support for each format.
+6. Configure the brand-logo shadow from local contrast.
+7. Rebuild the combined preview: landscape at 900 × 383, square rescaled by `383 / 900` at x = 924, with a 24 px white gap.
+8. Capture and return one inline screenshot of the final combined preview.
 
 Return IDs for the combined frame and both clones.
 
 ## 9. Visual validation
 
-Default to one inline screenshot or one screenshot of the final combined preview. Request individual landscape or square screenshots only if the combined preview indicates a crop, obstruction, low-contrast, masking, or fine-detail risk. Fix:
+Default to the inline combined-preview screenshot returned by the main mutation. Do not request a separate screenshot or metadata pass when it is sufficient. Request individual landscape or square screenshots only if the combined preview indicates a crop, obstruction, low-contrast, masking, or fine-detail risk. Allow at most one targeted correction call for an ordinary source; if another seems necessary, simplify and reassess the adaptation first. Fix:
 
 - cropping that hides the subject;
 - adaptation that changes the source style, colors, lighting, materials, text, or object geometry;
@@ -169,6 +177,7 @@ Default to one inline screenshot or one screenshot of the final combined preview
 - passive empty space that makes the source subjects feel timid;
 - any mask halo, polygon edge, foreign fragment, or background mismatch.
 - unnecessary, oversized, or source-incompatible title support.
+- habitual white gradients or generic title plates that feel pasted onto the image.
 
 Do not proceed to export on a failed validation.
 
@@ -182,13 +191,13 @@ Use `defaultScale: 2` only when the user requests high-resolution/final delivery
 
 Save each exported PNG with the names specified in `SKILL.md`.
 
-Do not validate the Skill package, sync a desktop copy, or touch GitHub during a normal image run. Those are maintenance actions for actual Skill-file changes only.
+Do not validate the Skill package, sync the desktop copy, or touch GitHub during a normal image run. Those are maintenance actions for actual Skill-file changes only.
 
-Construct deep links from the active file URL by adding `node-id=<normalized-id>`, replacing `:` with `-` in the query value. Preserve any required Figma URL structure.
+Construct deep links from the fixed file URL by adding `node-id=<normalized-id>`, replacing `:` with `-` in the query value. Preserve any required Figma URL structure.
 
 Return:
 
-- active workspace URL;
+- fixed workspace URL;
 - landscape deep link;
 - square deep link;
 - combined deep link;
