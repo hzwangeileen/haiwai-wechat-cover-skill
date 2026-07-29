@@ -81,6 +81,7 @@ Core rules:
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
 - Treat any title or company-logo background, plate, gradient, blur, or local weakening as optional. First test the content directly on the composition. If it is clearly readable, use no support at all.
 - Never use a pure-white support plate or default white gradient. If support is genuinely necessary, derive a compact translucent tint, restrained source-colored gradient, or local tonal veil from the image and logo palette. Keep it subtle, mature, and no larger than required.
+- Do not over-prioritize a background-free title. If any word, line, or material part of the letterforms becomes hard to read over multicolor objects, source typography, or changing light/dark regions, add a compact coordinated translucent support after reasonable placement adjustments. A light illustration may use a warm ivory, pale gray, or source-tinted translucent panel; keep it visibly integrated and distinct from a default opaque white card.
 - Treat all other composition positions, scales, crops, and element relationships as source-specific design decisions, not a template.
 
 ## Design from first principles
@@ -125,6 +126,8 @@ The example layout for one source must never become the default template for ano
 
 Default to minimum necessary recomposition. Preserve the source's overall relationships whenever possible. Prefer, in order: proportional scaling, position adjustment, small crops, extension of the native background, or moving one or two key elements to open a clear title zone. If moving solves the problem, do not split the image. If the overall composition can survive, do not rebuild it. Use multi-element separation and rearrangement only when lighter adjustments still cannot preserve the subject, title readability, and compositional balance together. Never redesign a source merely to demonstrate recomposition.
 
+Treat continuity as semantic, not merely visual. Never split one continuous illustration, process, sequence, diagram, object group, or directional composition into disconnected left/right or top/bottom fragments just to open a title gap. Do not duplicate, mirror, reorder, or spatially separate source regions when that changes how the original is read. Preserve the intact source as one proportional unit whenever its internal relationships carry meaning; create the title zone with native-background extension, whole-image scaling/repositioning, or minimal local weakening instead.
+
 ## Prepare the images
 
 Inspect the source image before deciding how to fit it.
@@ -165,11 +168,15 @@ The utility requires Pillow. If the active Python cannot import `PIL`, use the C
 
 For a company logo:
 
-1. If it already has transparency, run `trim-alpha` before upload.
-2. If it has a uniform or nearly uniform edge background, prefer `remove-edge-background --trim` to create a transparent cutout.
-3. Inspect the transparent result at 100%. Reject it if it damages internal white regions, enclosed counters, antialiasing, thin strokes, shadows, or brand colors. Fall back to the original logo when clean removal is not possible.
-4. Test the clean transparent logo directly on the composition first. If it is readable, add no support.
-5. If it is not readable, add a compact source- or brand-coordinated tinted gradient or translucent non-white support. Never place the logo on a default pure-white card.
+1. Prefer the company's official SVG/vector asset when it is available and matches the logo version supplied by the user. Do not replace an older supplied identity with a newer redesign without confirmation.
+2. Before placing a raster logo, compare its native pixel dimensions with the largest displayed footprint. Require at least 1.5× pixel coverage for a normal 1× export and prefer 2× coverage when the logo contains fine curves, small type, or may be reused at higher resolution. Never enlarge a raster beyond its native dimensions and ship visibly soft edges.
+3. If the raster is undersized, search the official company site, official documentation CDN, or official repository for the matching SVG/vector version. If no matching vector or higher-resolution asset is available, reduce the displayed size to a crisp level or ask for a better source; do not invent detail with sharpening or AI upscaling.
+4. If it already has transparency, run `trim-alpha` before upload.
+5. If it has a uniform or nearly uniform edge background, prefer `remove-edge-background --trim` to create a transparent cutout.
+6. Inspect the transparent result at 100% on a checkerboard plus both a light and a dark/high-saturation test background. Reject it if any rectangular matte, edge-color residue, white/gray fringe, halo, dirty antialiasing, missing internal white region, broken counter, damaged thin stroke, shadow, or altered brand color remains. A transparent canvas alone is not evidence of a clean cutout.
+7. Test the clean transparent logo directly on the composition first. If it is readable, add no support.
+8. If it is not readable, add a compact source- or brand-coordinated tinted gradient or translucent non-white support. Never place the logo on a default pure-white card.
+9. When clean removal cannot pass the three-background test, prefer an official transparent/vector logo. Otherwise preserve the original opaque logo inside the smallest intentional, source-coordinated support treatment; never ship a visibly dirty pseudo-transparent cutout.
 
 ## Use the fixed Figma workspace
 
@@ -222,6 +229,10 @@ For keyword mode:
 5. Apply user-specified highlight colors only to the specified ranges.
 6. Report the actual font used and whether fallback occurred.
 
+For a two-line keyword, validate each line independently at final display size and again inside the 383 × 383 combined preview. Both lines must have comparable prominence and fully readable letterforms. Do not accept a title because the first line is strong while the second line crosses a busy object, similar-value color, source typography, or high-frequency edge. Fix the weaker line by moving the intact title/source, adjusting the title zone, changing the whole title color, or adding the smallest integrated local veil; do not solve it by crowding, outlining, or styling the two lines as unrelated elements.
+
+When direct placement still causes partial letter loss, title support becomes required rather than optional. Apply one unified support treatment behind the whole title so both lines retain equal hierarchy. Do not leave a title technically visible but effortful to read merely to preserve a “no background” look.
+
 For company-logo mode:
 
 - Prefer a clean trimmed transparent image when the source permits safe edge-background removal.
@@ -247,6 +258,8 @@ Check:
 - the square title or company logo remains clearly readable after the square is reduced to 383 × 383 in the combined preview;
 - no keyword overflow or unintended wrapping;
 - no logo distortion or transparent-padding shrinkage;
+- no company-logo matte, residual edge color, rectangular haze, white/gray fringe, or halo on light, dark, and saturated local backgrounds;
+- company logos remain crisp at 100% and are not raster-upscaled beyond their native dimensions; official matching vectors are used when available;
 - brand logo position, contrast, and safe margins;
 - combined preview order and spacing.
 - deliberate visual hierarchy, balance, rhythm, and premium finish;
@@ -263,7 +276,9 @@ Check:
 - no unnecessary title support obscures useful artwork or makes the cover feel templated.
 - the final tone is mature, premium, and editorial rather than childish, toy-like, cute, gaudy, or over-effected.
 - two-line titles do not feel vertically compressed, tightly tracked, or crowded against their support boundary.
+- every line of a two-line title remains individually prominent and readable at both native size and 383 px preview size; the second line may not be materially weaker than the first.
 - title letterforms do not cross rapidly changing light/dark regions, multiple saturated colors, dense edges, or embedded source text.
+- adaptation preserves the source's semantic continuity; no continuous illustration, sequence, diagram, directional flow, or object group has been split into disconnected fragments merely to create a title gap.
 
 Fix issues before exporting.
 

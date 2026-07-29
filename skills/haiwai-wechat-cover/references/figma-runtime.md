@@ -131,6 +131,10 @@ For company-logo mode, inspect the uploaded logo in both covers and verify it is
 
 Prefer a clean transparent company-logo asset when edge-background removal is safe. Inspect it at 100% before upload. Preserve the original opaque version when transparency introduces halos, missing internal whites, broken counters, or damaged thin strokes.
 
+Before upload, preview the cutout on checkerboard, light neutral, and dark/saturated backgrounds. Fail it for any residual matte rectangle, original edge color, white/gray fringe, halo, or dirty antialiasing. If it fails, use an official transparent/vector asset or the original opaque logo with the smallest intentional source-coordinated support; never upload a dirty pseudo-transparent cutout.
+
+Prefer an official matching SVG/vector logo before raster upload. For a raster asset, compare native dimensions with every target footprint and fail any placement that enlarges the source or produces soft edges at 100%. Require at least 1.5× source pixels per displayed pixel and prefer 2× for fine wordmarks. Keep the supplied logo generation/version unless the user approves a redesign.
+
 ## 7. Title support and brand-logo contrast
 
 First evaluate keyword/company-logo legibility with `Title Support` hidden.
@@ -146,6 +150,10 @@ First evaluate keyword/company-logo legibility with `Title Support` hidden.
 Apply the specified shadow only where the white logo lacks contrast. Reassign the full effects array; do not mutate it in place.
 
 During QA, fail the cover if individual letterforms lose clarity as they cross several colors, high-frequency edges, or source typography—even when the title is technically large enough.
+
+For two-line titles, evaluate each line independently in both covers and in the reduced combined preview. The second line must not become less prominent because it crosses a busy object or similar-value region. Correct the reading zone or whole-title treatment before export.
+
+If partial letterforms remain difficult to read after reasonable repositioning, reveal and adapt `Title Support`; do not keep it hidden merely to obtain a background-free appearance. Use one compact source-coordinated translucent panel or veil behind the complete title. For light illustrations, prefer warm ivory, pale gray, or a source tint rather than opaque pure white.
 
 ## 8. Batched layout and combined preview
 
@@ -168,12 +176,16 @@ Default to the inline combined-preview screenshot returned by the main mutation.
 
 - cropping that hides the subject;
 - adaptation that changes the source style, colors, lighting, materials, text, or object geometry;
+- adaptation that splits a continuous source illustration, sequence, diagram, directional flow, or object group into disconnected fragments and changes its intended reading;
 - low contrast;
 - off-center content;
 - text overflow;
 - logo distortion;
+- company-logo residual matte, edge-color haze, white/gray fringe, or halo on light, dark, or saturated backgrounds;
+- raster company-logo upscaling, soft edges at 100%, or failure to use an available matching official vector;
 - content scale that is inconsistent with the format-specific master footprint;
 - a square title that becomes too small or cramped after the square is reduced to 383 × 383;
+- a two-line title whose second line is materially less legible or prominent than the first;
 - wrong combined spacing.
 - passive empty space that makes the source subjects feel timid;
 - any mask halo, polygon edge, foreign fragment, or background mismatch.

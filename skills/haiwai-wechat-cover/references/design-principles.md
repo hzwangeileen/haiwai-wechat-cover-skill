@@ -29,11 +29,21 @@ Do not assume centered content needs a background. First use the image's natural
 
 Treat a company logo as transparent by preference, not by force. Remove a uniform edge background only when the result preserves every internal white region, counter, stroke, shadow, and brand color. Test the transparent logo directly on the composition; add no backing when it reads clearly. When support is necessary, use a restrained non-white tint or source-/brand-colored gradient rather than a pure-white card.
 
+Test every company-logo cutout at 100% on three backgrounds before use: checkerboard, light neutral, and dark or saturated. Transparency passes only when the contour remains clean on all three and no rectangular matte, original edge color, white/gray fringe, halo, or dirty antialiasing survives outside the intended mark.
+
+Treat edge sharpness as a separate quality gate. Prefer an official matching SVG/vector logo. For raster logos, require at least 1.5× native pixel coverage relative to the largest displayed footprint and prefer 2× for fine wordmarks. Do not upscale a small raster and compensate with sharpening. Preserve the supplied logo generation/version; a newer official redesign is not an automatic substitute for an older supplied identity.
+
+For two-line titles, inspect the lines independently at native size and in the reduced square preview. Require the second line to be as immediately legible and prominent as the first. If one line is weaker, move the intact title/source, stabilize the local reading zone, or use the smallest source-coordinated veil; do not approve the title based on aggregate readability.
+
+Do not treat “no backing” as a quality goal by itself. When any word or substantial letterform remains effortful to read after reasonable placement, use one compact translucent support behind the whole title. On light illustrations, a warm ivory, pale gray, or source-tinted panel is acceptable; avoid an opaque pure-white card and keep the intervention no larger than needed.
+
 ## 3. Choose a strategy
 
 Use the least destructive strategy that creates a balanced cover:
 
 Apply a minimum-necessary-recomposition rule before the routing matrix: preserve the source's overall relationships first. Try proportional scaling, position adjustment, small cropping, native-background extension, or moving one or two key elements before separating multiple elements. If movement is sufficient, do not split. If the overall composition can be retained, do not rebuild it. Multi-element separation is a last resort, not a demonstration of capability.
+
+Preserve semantic continuity. A visually continuous illustration, sequence, diagram, object family, or directional flow must remain one coherent reading unit. Do not manufacture a central title gap by cutting a continuous source into two disconnected islands, duplicating or mirroring regions, or changing the order and distance between related parts. When continuity matters, scale and reposition the intact source on an extended native background, or weaken only the minimum local area behind the title.
 
 Treat ordinary aspect-ratio adaptation as a lightweight path. A mismatched canvas is not evidence that the source needs separation. Estimate complexity before production: if a plan needs more than two source uploads or more than two Figma layout rounds, reassess crop, focal position, native-background extension, proportional contain, or local weakening first.
 
@@ -103,6 +113,9 @@ Reject a composition when:
 - crop edges, masks, or background seams are visible;
 - a separated element still contains fragments of another subject;
 - a mask halo or polygon boundary is visible at normal size or 100%;
+- a logo cutout retains a rectangular matte, edge-color haze, white/gray fringe, or dirty antialiasing on any plausible local background;
+- a raster logo is enlarged beyond its native dimensions or looks soft at 100% when a matching official vector should have been used;
+- a continuous source composition has been split into disconnected fragments and its original relationship or meaning has changed;
 - the result looks like a template rather than a response to the source;
 - a source element is enlarged beyond useful detail.
 - the treatment feels childish, toy-like, overly cute, gaudy, immature, or generically “AI designed”;
