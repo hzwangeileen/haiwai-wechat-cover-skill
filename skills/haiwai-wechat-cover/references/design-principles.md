@@ -35,6 +35,8 @@ Apply a minimum-necessary-recomposition rule before the routing matrix: preserve
 
 Treat ordinary aspect-ratio adaptation as a lightweight path. A mismatched canvas is not evidence that the source needs separation. Estimate complexity before production: if a plan needs more than two source uploads or more than two Figma layout rounds, reassess crop, focal position, native-background extension, proportional contain, or local weakening first.
 
+For landscape composition, reject single-side parking: do not place the entire meaningful image group only in the left or right outer third and leave the opposite side empty. A centered title does not by itself balance a one-sided subject block. Preserve balance by letting the overall source cross the center axis, distributing source content through upper and lower zones, or retaining a real source-derived counterweight. Use asymmetry only when the visual weights still read as intentionally balanced.
+
 ### Routing matrix
 
 Classify the source before entering Figma:
@@ -91,6 +93,7 @@ Allow small corrections to spacing, edge blending, tonal balance, or background 
 Reject a composition when:
 
 - the full source is simply reduced into a corner;
+- the landscape's meaningful source content is confined to one side without a real source-derived counterweight;
 - the layout contains more passive empty space than the hierarchy needs;
 - one side feels visually empty without intentional counterbalance;
 - subjects and text compete at the same visual weight;

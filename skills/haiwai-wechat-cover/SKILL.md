@@ -72,7 +72,7 @@ Core rules:
 
 ## Design from first principles
 
-Do not mechanically fit the whole source into a corner.
+Do not mechanically fit the whole source into a corner or park the entire visual group on one side of a landscape cover.
 
 Before editing:
 
@@ -86,6 +86,8 @@ Before editing:
    - extraction and recomposition of separable source elements;
    - restrained cleanup or tonal balancing that preserves the original style.
 5. Reject layouts with weak balance, accidental collisions, excessive dead space, or a subject merely squeezed into a corner.
+
+For landscape covers, never confine all meaningful source content to only the left or right outer third while the opposite side remains visually empty. Asymmetry is allowed, but the visual mass must cross the center axis, distribute through upper/lower zones, or gain a genuine counterweight from another source element. The centered title and empty space alone do not count as sufficient counterweight. Prefer a centered proportional crop or a source-wide distribution before moving the entire image group to one side.
 
 For title legibility, judge the final composition in this order:
 
@@ -224,6 +226,7 @@ Check:
 - combined preview order and spacing.
 - deliberate visual hierarchy, balance, rhythm, and premium finish;
 - no element appears mechanically squeezed into a corner;
+- landscape visual mass is not parked entirely on one side; meaningful artwork crosses the center axis or has a genuine source-derived counterweight.
 - source elements remain crisp at their displayed size.
 - subject and center-content scale feels confident rather than surrounded by uncontrolled empty space;
 - no large neutral region dominates the frame without a deliberate compositional purpose;

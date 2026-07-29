@@ -37,6 +37,8 @@ Place the Section itself to the right of the rightmost existing top-level page n
 - Never redraw or generatively restyle the subject merely to fit the target ratio.
 - Default to minimum necessary recomposition: preserve overall source relationships and try proportional scaling, repositioning, small cropping, native-background extension, or moving one or two key elements before any multi-element separation.
 - Do not split or rebuild a composition when movement or canvas extension solves the title-zone problem.
+- In landscape covers, do not park the entire meaningful image group in the left or right outer third. Require the source visual mass to cross the center axis, distribute through upper/lower zones, or retain a genuine source-derived counterweight.
+- Do not treat the centered title or an empty opposite side as sufficient visual counterweight.
 
 ## Central content
 
