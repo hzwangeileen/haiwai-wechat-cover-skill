@@ -25,6 +25,8 @@ The reading order is:
 
 Keep the center content easy to read without making the source decorative or insignificant.
 
+Do not assume centered content needs a background. First use the image's natural negative space and local contrast. A backing plate, gradient, blur, veil, or local tonal weakening is an adaptive compositional tool, not a template requirement.
+
 ## 3. Choose a strategy
 
 Use the least destructive strategy that creates a balanced cover:
@@ -90,6 +92,8 @@ Prefer:
 - consistent light and shadow;
 - restrained color;
 - crisp edges and typography.
+
+When title support is necessary, it should feel derived from the source rather than pasted on top of it. Match the source's geometry, palette, edge language, and degree of softness. Use the least area and opacity that reliably solves the reading problem. Remove it when direct text is already clear.
 
 Negative space must support focus, tension, or reading order. It is not automatically premium. As a practical review heuristic, enlarge or reframe the subjects when a neutral empty region dominates roughly one third of the frame without serving a clear compositional role. This is a quality check, not a fixed template rule.
 

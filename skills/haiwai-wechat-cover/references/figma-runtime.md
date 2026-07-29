@@ -14,6 +14,7 @@ Start with a read-only `use_figma` call:
 
 - verify the file is accessible;
 - inspect top-level page nodes;
+- find and validate the reusable top-level Section `海外独角兽封面｜MASTER`;
 - find the rightmost occupied x-coordinate;
 - return the target x-coordinate for the new run Section with at least 200 px clearance.
 
@@ -73,19 +74,20 @@ Prefer `crop-region` when the original white, red, or other simple background ca
 
 Use `extract-polygon` to separate source elements without generative redrawing only when a transparent layer is necessary. When subjects overlap inside a broad selection, repeat `--exclude-polygon` to subtract unrelated regions before upload. Inspect every cutout at 100%; refine masks until no fragment of another subject remains. Upload extracted elements as independent Figma layers and compose them according to the source-specific hierarchy.
 
-## 4. Build the skeleton
+## 4. Duplicate and update the master
 
-Use one incremental `use_figma` call to create a run-specific top-level Section, then create the three output frames inside it. Keep each call under 10 logical operations where practical.
+Duplicate the validated `海外独角兽封面｜MASTER` Section into clear canvas space, rename it for the current run, and update its existing layers. Do not rebuild frames, brand-logo layers, safe margins, or combined-preview spacing from scratch.
 
-Create the main cover frames first. Add:
+The master must contain:
 
-- a full-frame background rectangle;
-- source-specific image layers or extracted element layers;
-- a centered content layer;
-- a brand-logo rectangle;
-- meaningful names for every node.
+- landscape, square, and combined frames at the exact required dimensions;
+- full-frame background/image placeholders;
+- centered keyword/company-logo containers;
+- fixed brand-logo image layers;
+- hidden optional `Title Support` layers;
+- the 24 px combined-preview gap and correctly scaled square preview.
 
-Return every created node ID. Do not create text until the selected font has been loaded.
+When practical, perform master duplication, keyword replacement, font sizing, title positioning, optional-support configuration, and export-setting updates in one `use_figma` call. Return every mutated node ID. Do not edit text until the selected font has been loaded.
 
 Place the Section at the discovered clear page position. Use the non-overlapping child positions declared in `layout-spec.md`. Resize the Section from actual child bounds after its contents are complete.
 
@@ -96,10 +98,11 @@ Set export settings on the three top-level outputs to PNG at scale 1.
 Use Figma `upload_assets` with the target node ID:
 
 - upload each prepared background to its matching `Background` node using `FILL`;
-- upload the bundled brand logo to each `Haiwai Unicorn Logo` node using `FIT`;
 - in company-logo mode, upload the trimmed company logo to each `Center Content` image node using `FIT`.
 
 Upload the same source separately for each target node when required by the tool's single-use upload URL contract.
+
+The master already contains the fixed brand logo. Do not request new upload URLs or upload the bundled logo during a normal run. Upload it only while creating or repairing the master.
 
 Do not send credentials, tokens, or unrelated files to upload URLs.
 
@@ -117,9 +120,14 @@ For keyword mode:
 
 For company-logo mode, inspect the uploaded logo in both covers and verify it is not visually undersized because of residual padding.
 
-## 7. Brand logo contrast
+## 7. Title support and brand-logo contrast
 
-Inspect screenshots of both main covers.
+First evaluate keyword/company-logo legibility with `Title Support` hidden.
+
+- Leave it hidden when natural negative space and contrast are sufficient.
+- If support is necessary, adapt its shape, size, color, opacity, blur/gradient treatment, and radius to the current source.
+- Prefer the smallest intervention that stabilizes readability and improves the overall composition.
+- Never default to a fixed white rounded rectangle.
 
 Apply the specified shadow only where the white logo lacks contrast. Reassign the full effects array; do not mutate it in place.
 
@@ -137,7 +145,7 @@ Return IDs for the combined frame and both clones.
 
 ## 9. Visual validation
 
-Use inline screenshots or `get_screenshot` after each major stage. Fix:
+Default to one screenshot of the final combined preview. Request individual landscape or square screenshots only if the combined preview indicates a risk or if 100% inspection is necessary for masks or fine detail. Fix:
 
 - cropping that hides the subject;
 - adaptation that changes the source style, colors, lighting, materials, text, or object geometry;
@@ -150,15 +158,17 @@ Use inline screenshots or `get_screenshot` after each major stage. Fix:
 - wrong combined spacing.
 - passive empty space that makes the source subjects feel timid;
 - any mask halo, polygon edge, foreign fragment, or background mismatch.
+- unnecessary, oversized, or source-incompatible title support.
 
 Do not proceed to export on a failed validation.
 
 ## 10. Export and deep links
 
-Use `download_assets` twice per top-level output frame:
+Use `download_assets` once per top-level output frame for the standard deliverables:
 
 - `defaultScale: 1` for the standard PNG;
-- `defaultScale: 2` for the high-resolution master.
+
+Use `defaultScale: 2` only when the user requests high-resolution/final delivery, the output has a known larger downstream use, or the standard export exposes a real raster-quality concern.
 
 Save each exported PNG with the names specified in `SKILL.md`.
 

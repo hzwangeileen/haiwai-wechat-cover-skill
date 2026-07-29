@@ -1,17 +1,19 @@
 ---
 name: haiwai-wechat-cover
-description: Create premium 海外独角兽-branded WeChat cover packages from a user-selected image or image elements plus either a centered keyword or company logo. Use when Codex must design source-specific 2.35:1 and 1:1 covers, intelligently crop or recompose elements without changing their visual style, preserve editable Figma layers, export standard and 2× high-resolution PNGs, and return direct Figma links.
+description: Create premium 海外独角兽-branded WeChat cover packages from a user-selected image or image elements plus either a centered keyword or company logo. Use when Codex must design source-specific 2.35:1 and 1:1 covers, intelligently crop or recompose elements without changing their visual style, preserve editable Figma layers, export production-ready PNGs, and return direct Figma links.
 ---
 
 # 海外独角兽微信封面
 
-Create every cover in the designated editable Figma workspace, then export standard and 2× PNGs for:
+Create every cover in the designated editable Figma workspace, then export production-ready PNGs for:
 
 - 900 × 383 landscape cover
 - 900 × 900 square cover
 - 1307 × 383 side-by-side preview
 
 Use the bundled white 海外独角兽 logo. Keep the selected background, central keyword or company logo, and brand logo as separate editable Figma layers.
+
+Use one default high-quality workflow. Do not expose or invent separate “fast”, “standard”, or “refined” modes. Improve speed by reusing the Figma master, batching safe mutations, and limiting QA/export work without lowering the visual bar.
 
 ## Required inputs
 
@@ -64,6 +66,7 @@ Core rules:
 - Prefer a single keyword line. Allow at most two lines; shrink long text instead of exceeding the footprint.
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
+- Treat any title background, plate, gradient, blur, or local weakening as optional. First test the title directly on the composition. Add support only when it materially improves legibility, hierarchy, or beauty; never add it merely because another cover used one.
 - Treat all other composition positions, scales, crops, and element relationships as source-specific design decisions, not a template.
 
 ## Design from first principles
@@ -82,6 +85,15 @@ Before editing:
    - extraction and recomposition of separable source elements;
    - restrained cleanup or tonal balancing that preserves the original style.
 5. Reject layouts with weak balance, accidental collisions, excessive dead space, or a subject merely squeezed into a corner.
+
+For title legibility, judge the final composition in this order:
+
+1. Use natural negative space with no title backing when contrast and hierarchy are already strong.
+2. Reposition or reframe source elements when that creates a better title zone without harming the subject.
+3. Only when necessary, add the least intrusive coordinated support: a small source-colored plate, restrained gradient, local blur, tonal veil, or local weakening.
+4. Size and shape that support for the current source. Do not reuse a fixed white rounded rectangle, opacity, radius, or footprint across unrelated images.
+
+The absence of a title backing is not a goal by itself, and the presence of one is not a quality signal. The test is whether the whole cover feels intentional, premium, and immediately readable.
 
 Do not treat background removal as the default. If the source background is white, red, or any other color that already supports the composition, preserve it as part of the image. Prefer a native crop or source-backed crop over a transparent cutout.
 
@@ -119,6 +131,15 @@ Use the editable Figma Design URL supplied by the user. Extract its file key and
 
 Do not create a new Figma file automatically. Do not overwrite prior outputs.
 
+Find the top-level Section named `海外独角兽封面｜MASTER`. Duplicate its landscape, square, and combined frames into a new run-specific Section. The master owns:
+
+- exact canvas sizes and combined-preview spacing;
+- fixed 海外独角兽 logo layers, safe margins, and logo shadow defaults;
+- reusable centered keyword/company-logo containers;
+- an optional title-support layer that is hidden by default.
+
+Do not upload the fixed brand logo again when the master is available. Replace only source-specific image/company-logo fills and text. If the master is missing or structurally invalid, create or repair it once from the bundled assets, then continue from that master.
+
 Create a new top-level Section named:
 
 `海外独角兽封面｜<keyword-or-company>｜<YYYY-MM-DD>`
@@ -127,9 +148,9 @@ Place the new Section in clear canvas space to the right of existing content. Ke
 
 ## Build editable Figma layers
 
-Follow the incremental sequence in `references/figma-runtime.md`.
+Follow the batched sequence in `references/figma-runtime.md`.
 
-Create these top-level frames:
+Duplicate these top-level master frames:
 
 1. `01 Landscape 900x383`
 2. `02 Square 900x900`
@@ -140,6 +161,7 @@ Within each main cover, create named layers:
 - `Background`
 - `Center Content`
 - `Haiwai Unicorn Logo`
+- `Title Support` (optional and hidden by default)
 
 For keyword mode:
 
@@ -158,9 +180,11 @@ For company-logo mode:
 
 Construct the combined preview after the two main covers pass visual QA. Clone the completed covers: keep the landscape at 900 × 383, scale the square clone to 383 × 383, and separate them with a 24 px white gap.
 
+Whenever practical, use one `use_figma` call to duplicate the master, update text, apply title sizing/layout, configure title support, and return all affected node IDs. Do not split actions into multiple calls when they are safely expressible as one mutation.
+
 ## Validate and export
 
-Visually inspect both main covers and the combined preview in Figma.
+By default, visually inspect the final combined preview in Figma. Inspect an individual landscape or square frame only when the combined preview reveals or suggests cropping, masking, contrast, readability, logo, or safe-margin risk that cannot be judged reliably at the reduced size.
 
 Check:
 
@@ -180,6 +204,8 @@ Check:
 - subject and center-content scale feels confident rather than surrounded by uncontrolled empty space;
 - no large neutral region dominates the frame without a deliberate compositional purpose;
 - no cutout halo, foreign fragment, polygon edge, or background mismatch is visible at 100%.
+- any title support is demonstrably necessary, source-coordinated, and no larger or heavier than needed;
+- no unnecessary title support obscures useful artwork or makes the cover feel templated.
 
 Fix issues before exporting.
 
@@ -189,7 +215,7 @@ Export PNGs with these names:
 - `<slug>-wechat-square-900x900.png`
 - `<slug>-wechat-combined-1307x383.png`
 
-Also export 2× high-resolution masters:
+Export 2× high-resolution masters only when the user requests high-resolution/final delivery, the asset will be repurposed beyond normal WeChat display, or 1× inspection reveals a genuine raster-quality risk:
 
 - `<slug>-wechat-landscape-1800x766@2x.png`
 - `<slug>-wechat-square-1800x1800@2x.png`
@@ -197,7 +223,7 @@ Also export 2× high-resolution masters:
 
 Return:
 
-1. links or paths to all standard and 2× PNGs;
+1. links or paths to all exported PNGs;
 2. the active Figma workspace URL;
 3. direct `node-id` links to all three output frames;
 4. the font actually used;

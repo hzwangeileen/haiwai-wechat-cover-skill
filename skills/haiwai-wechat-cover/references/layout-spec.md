@@ -55,6 +55,9 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 - Shrink long text to fit; never exceed the active format's footprint.
 - Default color: black or white, whichever has stronger local contrast.
 - Apply explicit highlight colors only when requested.
+- Start with no background behind the keyword.
+- Add a plate, gradient, blur, veil, or local weakening only when direct placement fails the combined tests of contrast, hierarchy, and overall beauty.
+- Adapt support to the source; do not use a fixed white card, radius, opacity, or size.
 
 ### Company logo
 
@@ -96,9 +99,10 @@ Do not add a shadow on a sufficiently dark background.
 
 ## Resolution
 
-Export each frame twice:
+Export each frame at 1× by default:
 
 - 1× compatibility output at the frame's native dimensions;
-- 2× high-resolution master.
+
+Export a 2× high-resolution master only for explicit high-resolution/final delivery, known larger reuse, or a demonstrated raster-quality need.
 
 Do not resize the Figma frames for the 2× export; use the export scale so vector text and logos remain crisp.
