@@ -29,5 +29,4 @@ outputs:
   scale_2x: true
   figma_links: true
 
-# 没有默认工作区权限时，用自己的 Figma Design 文件覆盖：
-# figma_file_url: "https://www.figma.com/design/..."
+figma_file_url: "https://www.figma.com/design/<YOUR_FILE_KEY>/<YOUR_FILE_NAME>"

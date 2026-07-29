@@ -55,7 +55,7 @@ skills/haiwai-wechat-cover
 - 已连接并具备编辑权限的 Figma MCP
 - 一个可写入的 Figma Design 文件
 
-当前品牌默认工作区记录在 Skill 中。分享给没有该文件权限的人时，应让对方提供自己的 Figma Design 链接作为运行时覆盖值。
+每位使用者都需要提供自己的可编辑 Figma Design 链接。公开版不包含任何私人或固定工作区地址。
 
 ## 仓库结构
 

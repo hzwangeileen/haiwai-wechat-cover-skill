@@ -21,12 +21,12 @@ Require:
 2. Exactly one central-content mode:
    - keyword text; or
    - company logo image.
+3. One editable Figma Design file URL.
 
 Accept optional:
 
 - highlighted keyword ranges and explicit colors, such as `AI=#B51F2A`;
 - focal-point or subject-preservation instructions;
-- an editable Figma Design file URL override;
 - an output directory.
 
 Ask only for missing required inputs. Apply the defaults below without repeatedly reconfirming them.
@@ -113,14 +113,9 @@ The utility requires Pillow. If the active Python cannot import `PIL`, use the C
 
 For a company logo, run the same script in `trim-alpha` mode before upload. The script removes transparent padding and adds a small clean margin. If the logo has an opaque background, preserve it and do not guess at background removal.
 
-## Resolve the Figma workspace
+## Use the supplied Figma workspace
 
-Use this Figma Design file by default:
-
-- file key: `EipE7fkEv9xLOzqX7yqSAP`
-- URL: `https://www.figma.com/design/EipE7fkEv9xLOzqX7yqSAP/Untitled`
-
-When the user provides another editable Figma Design URL, use that file for the run instead. This makes the Skill portable for collaborators who do not have access to the default workspace.
+Use the editable Figma Design URL supplied by the user. Extract its file key and use the same active file for every Figma operation and returned deep link.
 
 Do not create a new Figma file automatically. Do not overwrite prior outputs.
 

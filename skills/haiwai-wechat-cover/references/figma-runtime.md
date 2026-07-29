@@ -4,14 +4,9 @@ Use this reference for every run.
 
 Read `design-principles.md` before choosing the layout.
 
-## 1. Resolve and open the workspace
+## 1. Open the supplied workspace
 
-Use the user-provided editable Figma Design URL when present. Otherwise use the default:
-
-- file key: `EipE7fkEv9xLOzqX7yqSAP`
-- file URL: `https://www.figma.com/design/EipE7fkEv9xLOzqX7yqSAP/Untitled`
-
-Extract the active file key from the resolved URL and use it consistently for every Figma call and deep link in the run.
+Require a user-provided editable Figma Design URL. Extract the active file key from that URL and use it consistently for every Figma call and deep link in the run.
 
 Do not call `create_new_file`.
 
