@@ -72,12 +72,19 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 - Adapt support to the source; do not use a pure-white card or white gradient, or reuse a fixed radius, opacity, or size.
 - Prefer a restrained non-white tint or source-colored gradient only when support is necessary. Keep the result mature and editorial.
 - Require a stable low-interference reading zone. Reframe or recompose before relying on heavier type, and never let title letterforms cross rapidly alternating colors, dense edges, or embedded source text.
+- For two-line titles, require both lines to remain independently prominent at native size and in the 383 × 383 preview. The second line must not be materially weaker than the first.
+- When any word or substantial letterform remains effortful to read after reasonable placement, require one compact support behind the whole title. On light artwork, use a warm ivory, pale gray, or source-tinted translucent panel instead of an opaque pure-white card.
 
 ### Company logo
 
+- Prefer an official matching SVG/vector asset.
+- Preserve the logo generation/version supplied by the user; do not silently substitute a newer redesign.
+- For raster assets, require at least 1.5× native pixel coverage relative to the largest displayed footprint and prefer 2× for fine wordmarks. Never enlarge a raster beyond native size for final delivery.
 - Trim transparent padding before placement.
 - When the source has a safely removable uniform edge background, create and inspect a clean transparent cutout first.
 - Preserve the original opaque logo if removal damages internal white shapes, counters, antialiasing, strokes, shadows, or brand colors.
+- Validate a transparent cutout at 100% on checkerboard, light neutral, and dark/saturated backgrounds. Reject any residual matte rectangle, edge-color haze, white/gray fringe, halo, or dirty antialiasing.
+- Prefer an official transparent/vector mark after a failed cutout. Otherwise retain the opaque logo with the smallest intentional source-coordinated support instead of shipping a dirty pseudo-transparent asset.
 - Use FIT/contain behavior.
 - Preserve aspect ratio and alpha.
 - Test the logo directly on the image first; when it is clear, add no background.
