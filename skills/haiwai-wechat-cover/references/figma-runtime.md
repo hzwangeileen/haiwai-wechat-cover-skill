@@ -113,8 +113,8 @@ For keyword mode:
 
 - load the chosen font;
 - create the text in both covers;
-- fit it into 360 × 150 px in landscape or 500 × 230 px in square;
-- use exactly 35 px / 46 px line height in landscape and 82 px / 108 px line height in square by default;
+- fit it into 360 × 150 px in landscape or 600 × 360 px in square;
+- use exactly 35 px / 46 px line height in landscape and 140 px / 164 px line height in square by default;
 - use neutral tracking and upright Kadwa Regular; do not use negative tracking;
 - split a two-part title into a balanced centered two-line stack, matching `Agent\nIdentity` in the supplied reference;
 - preserve comfortable space between the two lines and at least roughly half a cap-height of optical padding inside any title-support layer;
@@ -183,6 +183,8 @@ Default to the inline combined-preview screenshot returned by the main mutation.
 - raster company-logo upscaling, soft edges at 100%, or failure to use an available matching official vector;
 - content scale that is inconsistent with the format-specific master footprint;
 - a square title that becomes too small or cramped after the square is reduced to 383 × 383;
+- a square title whose two lines are not immediately readable at an approximately 90 × 90 px WeChat card size;
+- flattened, screenshot-derived, raster-upscaled, or visibly soft added text/company logos in either native-size output;
 - a two-line title whose second line is materially less legible or prominent than the first;
 - wrong combined spacing.
 - passive empty space that makes the source subjects feel timid;

@@ -72,12 +72,14 @@ Core rules:
 - Center the keyword or company logo.
 - Use format-specific master central-content footprints so both outputs remain readable at their actual display sizes:
   - landscape: at most 360 × 150 px;
-  - square: at most 500 × 230 px.
+  - square: at most 600 × 360 px.
 - Keep sizing consistent across runs within each format. The square content is intentionally larger because it is reduced more aggressively in share cards and the combined preview.
 - Preserve logo aspect ratios. Never stretch, crop, or distort a company logo.
 - Prefer a single keyword line. Allow at most two lines; shrink long text instead of exceeding the footprint.
 - Give two-line titles visible breathing room. Do not use line height smaller than the font size or negative tracking by default. Reduce type size before tightening line spacing, tracking, or support-layer padding.
-- Treat the supplied Agent Identity reference as the canonical title appearance: Kadwa Regular, upright, centered, neutral tracking, and a calm two-line stack. Use 35 px font size with 46 px line height in the 900 × 383 landscape frame. In the 900 × 900 square frame, use 82 px with 108 px line height so its reduction to 383 × 383 reproduces the same approximately 35 px / 46 px visual scale.
+- Treat the supplied Agent Identity references as the canonical title appearance: Kadwa Regular, upright, centered, neutral tracking, and a calm two-line stack. Use 35 px font size with 46 px line height in the 900 × 383 landscape frame. In the 900 × 900 square frame, use 140 px with 164 px line height so the title remains prominent when shown as an approximately 90 × 90 px WeChat card thumbnail.
+- Keep added titles as live Figma text and added logos as vector/SVG nodes whenever available until final PNG export. Never flatten, screenshot, rasterize, or repeatedly export and re-import either one during composition.
+- Require both the landscape and square PNG to retain crisp title and logo edges at 100% native output size. Export directly from the final Figma frames at their exact dimensions without JPEG conversion, preview-image substitution, post-export enlargement, or lossy recompression.
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
 - Treat the bundled `assets/haiwai-unicorn-logo-white.png` as the canonical high-resolution brand master. Its expected source is 928 × 801 RGBA pixels with SHA-256 `aac7770a785256cc83ed88987959f570866da224ac41aa9e74b97654f7c02b36`. Never substitute a screenshot, chat thumbnail, preview export, recompressed copy, or previously exported cover crop.
@@ -230,19 +232,19 @@ For keyword mode:
 1. Use exactly `{ family: "Kadwa", style: "Regular" }` for the default title. Do not inherit the old Alegreya/Albertus setting from earlier master versions.
 2. Load Kadwa Regular directly and skip font discovery when it succeeds. If the exact family/style is unavailable, stop and report the missing font; do not silently substitute another family or weight.
 3. Use 35 px font size and 46 px line height in the 900 × 383 landscape frame.
-4. Use 82 px font size and 108 px line height in the 900 × 900 square frame; this becomes approximately 35 px / 46 px after the square is scaled to 383 × 383.
+4. Use 140 px font size and 164 px line height in the 900 × 900 square frame. This becomes approximately 14 px / 16.4 px at a 90 × 90 px WeChat card thumbnail, matching the supplied small-card reference.
 5. Use upright text, neutral tracking, centered paragraph alignment, and centered vertical/horizontal placement. Prefer a balanced two-line stack for a two-part title, as in `Agent\nIdentity`; use no more than two lines.
 6. Default to black or white based on the stable title-zone contrast. Apply user-specified highlight colors only to explicitly specified ranges.
 7. Keep these sizes fixed by default. Reduce only when the supplied title would overflow its footprint; never enlarge merely to fill empty space. Report any size reduction.
 
-For a two-line keyword, validate each line independently at final display size and again inside the 383 × 383 combined preview. Both lines must have comparable prominence and fully readable letterforms. Do not accept a title because the first line is strong while the second line crosses a busy object, similar-value color, source typography, or high-frequency edge. Fix the weaker line by moving the intact title/source, adjusting the title zone, changing the whole title color, or adding the smallest integrated local veil; do not solve it by crowding, outlining, or styling the two lines as unrelated elements.
+For a two-line keyword, validate each line independently at final display size, inside the 383 × 383 combined preview, and as an approximately 90 × 90 px thumbnail. Both lines must have comparable prominence and fully readable letterforms. Do not accept a title because the first line is strong while the second line crosses a busy object, similar-value color, source typography, or high-frequency edge. Fix the weaker line by moving the intact title/source, adjusting the title zone, changing the whole title color, or adding the smallest integrated local veil; do not solve it by crowding, outlining, or styling the two lines as unrelated elements.
 
 When direct placement still causes partial letter loss, title support becomes required rather than optional. Apply one unified support treatment behind the whole title so both lines retain equal hierarchy. Do not leave a title technically visible but effortful to read merely to preserve a “no background” look.
 
 For company-logo mode:
 
 - Prefer a clean trimmed transparent image when the source permits safe edge-background removal.
-- Fit it inside the active format's master footprint: 360 × 150 px for landscape or 500 × 230 px for square.
+- Fit it inside the active format's master footprint: 360 × 150 px for landscape or 600 × 360 px for square.
 - Preserve aspect ratio and transparency.
 - If the transparent logo lacks contrast, add only the smallest mature source- or brand-colored gradient/tint needed for legibility. If it reads directly, keep `Title Support` hidden.
 
@@ -262,10 +264,12 @@ Check:
 - center content is geometrically centered;
 - each format uses its specified master content scale;
 - the square title or company logo remains clearly readable after the square is reduced to 383 × 383 in the combined preview;
+- the square title remains immediately readable at approximately 90 × 90 px, with both lines distinct and enough surrounding artwork visible to recognize the source;
 - no keyword overflow or unintended wrapping;
 - no logo distortion or transparent-padding shrinkage;
 - no company-logo matte, residual edge color, rectangular haze, white/gray fringe, or halo on light, dark, and saturated local backgrounds;
 - company logos remain crisp at 100% and are not raster-upscaled beyond their native dimensions; official matching vectors are used when available;
+- added titles remain live text until final export, and all added title/company-logo edges are crisp at 100% in both native-size PNG outputs;
 - brand logo position, contrast, and safe margins;
 - the 海外独角兽 logo remains crisp at 100% in 1× output and at 100% in any requested 2× output; no thumbnail source, repeated rasterization, interpolation softness, or compression artifact is present;
 - combined preview order and spacing.

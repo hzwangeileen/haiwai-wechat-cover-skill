@@ -47,21 +47,22 @@ Use a format-specific master visual footprint:
 | Format | Maximum width | Maximum height | Centered box |
 | --- | ---: | ---: | --- |
 | Landscape | 360 px | 150 px | x = 270, y = 116.5 |
-| Square | 500 px | 230 px | x = 200, y = 335 |
+| Square | 600 px | 360 px | x = 150, y = 270 |
 
 Both boxes share the exact canvas center. Keep sizing consistent across runs within each format.
 
-The square footprint is intentionally larger. The square is reduced to 383 × 383 in the combined preview and often appears as a small share-card thumbnail, so matching the landscape's native pixel size makes the square title look too small.
+The square footprint is intentionally larger. Its primary readability target is the approximately 90 × 90 px thumbnail used in a WeChat article card; the 383 × 383 combined preview is an intermediate QA view. Matching the landscape's native pixel size makes the square title look too small in the real card.
 
 ### Keyword
 
 - Horizontal alignment: center.
 - Vertical alignment: center.
+- Keep the title as live Figma text through final export. Do not use a screenshot, flattened preview, or raster text layer.
 - Font: Kadwa Regular, exact; do not silently fall back.
 - Upright style only; no italics.
 - Use a balanced two-line stack for a two-part title, matching the Agent Identity reference; two lines maximum.
 - Landscape 900 × 383: 35 px font size, 46 px line height.
-- Square 900 × 900: 82 px font size, 108 px line height. At the 383 × 383 preview scale, this reproduces approximately 35 px font size and 46 px line height.
+- Square 900 × 900: 140 px font size, 164 px line height. At approximately 90 × 90 px, this reproduces about 14 px font size and 16.4 px line height, matching the supplied WeChat card reference.
 - Use neutral tracking. Do not apply negative tracking.
 - When a support layer is present, preserve generous optical padding on all sides; reduce the title before squeezing its padding.
 - Keep the specified sizes unless the title would overflow; shrink only enough to fit and report the adjustment.
@@ -72,12 +73,13 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 - Adapt support to the source; do not use a pure-white card or white gradient, or reuse a fixed radius, opacity, or size.
 - Prefer a restrained non-white tint or source-colored gradient only when support is necessary. Keep the result mature and editorial.
 - Require a stable low-interference reading zone. Reframe or recompose before relying on heavier type, and never let title letterforms cross rapidly alternating colors, dense edges, or embedded source text.
-- For two-line titles, require both lines to remain independently prominent at native size and in the 383 × 383 preview. The second line must not be materially weaker than the first.
+- For two-line titles, require both lines to remain independently prominent at native size, in the 383 × 383 preview, and at approximately 90 × 90 px. The second line must not be materially weaker than the first.
 - When any word or substantial letterform remains effortful to read after reasonable placement, require one compact support behind the whole title. On light artwork, use a warm ivory, pale gray, or source-tinted translucent panel instead of an opaque pure-white card.
 
 ### Company logo
 
 - Prefer an official matching SVG/vector asset.
+- Keep vector artwork as vector nodes through final export. Never rasterize and re-import an added logo merely for convenience.
 - Preserve the logo generation/version supplied by the user; do not silently substitute a newer redesign.
 - For raster assets, require at least 1.5× native pixel coverage relative to the largest displayed footprint and prefer 2× for fine wordmarks. Never enlarge a raster beyond native size for final delivery.
 - Trim transparent padding before placement.
