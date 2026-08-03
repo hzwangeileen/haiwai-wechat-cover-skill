@@ -77,6 +77,7 @@ Core rules:
 - Preserve logo aspect ratios. Never stretch, crop, or distort a company logo.
 - Prefer a single keyword line. Allow at most two lines; shrink long text instead of exceeding the footprint.
 - Give two-line titles visible breathing room. Do not use line height smaller than the font size or negative tracking by default. Reduce type size before tightening line spacing, tracking, or support-layer padding.
+- Treat the supplied Agent Identity reference as the canonical title appearance: Kadwa Regular, upright, centered, neutral tracking, and a calm two-line stack. Use 35 px font size with 46 px line height in the 900 × 383 landscape frame. In the 900 × 900 square frame, use 82 px with 108 px line height so its reduction to 383 × 383 reproduces the same approximately 35 px / 46 px visual scale.
 - Place the 海外独角兽 logo at the upper right, 81 px wide, with 3% top and right margins.
 - Add a subtle dark shadow to the white brand logo only when the local background is light.
 - Treat the bundled `assets/haiwai-unicorn-logo-white.png` as the canonical high-resolution brand master. Its expected source is 928 × 801 RGBA pixels with SHA-256 `aac7770a785256cc83ed88987959f570866da224ac41aa9e74b97654f7c02b36`. Never substitute a screenshot, chat thumbnail, preview export, recompressed copy, or previously exported cover crop.
@@ -226,12 +227,13 @@ Within each main cover, create named layers:
 
 For keyword mode:
 
-1. In the fixed workspace, use the master’s established `Alegreya ExtraBold` without repeating font discovery on every run.
-2. Search fonts only when repairing the master, the inherited font is missing, or the user explicitly requests another family.
-3. When discovery is required, prefer `Albertus Nova`; otherwise use exactly `Alegreya ExtraBold`.
-4. Default to black or white based on contrast at the center of the image.
-5. Apply user-specified highlight colors only to the specified ranges.
-6. Report the actual font used and whether fallback occurred.
+1. Use exactly `{ family: "Kadwa", style: "Regular" }` for the default title. Do not inherit the old Alegreya/Albertus setting from earlier master versions.
+2. Load Kadwa Regular directly and skip font discovery when it succeeds. If the exact family/style is unavailable, stop and report the missing font; do not silently substitute another family or weight.
+3. Use 35 px font size and 46 px line height in the 900 × 383 landscape frame.
+4. Use 82 px font size and 108 px line height in the 900 × 900 square frame; this becomes approximately 35 px / 46 px after the square is scaled to 383 × 383.
+5. Use upright text, neutral tracking, centered paragraph alignment, and centered vertical/horizontal placement. Prefer a balanced two-line stack for a two-part title, as in `Agent\nIdentity`; use no more than two lines.
+6. Default to black or white based on the stable title-zone contrast. Apply user-specified highlight colors only to explicitly specified ranges.
+7. Keep these sizes fixed by default. Reduce only when the supplied title would overflow its footprint; never enlarge merely to fill empty space. Report any size reduction.
 
 For a two-line keyword, validate each line independently at final display size and again inside the 383 × 383 combined preview. Both lines must have comparable prominence and fully readable letterforms. Do not accept a title because the first line is strong while the second line crosses a busy object, similar-value color, source typography, or high-frequency edge. Fix the weaker line by moving the intact title/source, adjusting the title zone, changing the whole title color, or adding the smallest integrated local veil; do not solve it by crowding, outlining, or styling the two lines as unrelated elements.
 
