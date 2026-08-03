@@ -25,21 +25,13 @@ Because `use_figma` is atomic, let the call fail cleanly if the file or master i
 
 ## 2. Font handling
 
-The fixed master has already established `Alegreya ExtraBold`. In normal runs, inherit or load that exact font directly and skip `listAvailableFontsAsync()`.
-
-Run font discovery only when repairing/creating the master, when the inherited font is missing, or when the user requests another family.
-
-Choose the heaviest upright Albertus Nova style using this preference order when present:
-
-`Black`, `ExtraBold`, `Extra Bold`, `Bold`, `SemiBold`, `Semi Bold`, `Regular`.
-
-If the family is absent, verify and use:
+The canonical title font is exactly:
 
 ```js
-{ family: "Alegreya", style: "ExtraBold" }
+{ family: "Kadwa", style: "Regular" }
 ```
 
-Never guess style names. Load the selected font with `await figma.loadFontAsync(fontName)` before creating or editing text.
+Load it directly with `await figma.loadFontAsync({ family: "Kadwa", style: "Regular" })` before creating or editing text. Do not inherit earlier Alegreya/Albertus master typography. If Kadwa Regular is unavailable, stop and report the missing font; do not guess a style or silently substitute another family or weight.
 
 ## 3. Prepare local rasters
 
@@ -122,8 +114,9 @@ For keyword mode:
 - load the chosen font;
 - create the text in both covers;
 - fit it into 360 × 150 px in landscape or 500 × 230 px in square;
-- start short two-line titles near 64 px / 72 px line height in landscape and 88 px / 100 px line height in square, then adjust optically;
-- use neutral tracking by default; add negative tracking only when the letterforms remain visibly open;
+- use exactly 35 px / 46 px line height in landscape and 82 px / 108 px line height in square by default;
+- use neutral tracking and upright Kadwa Regular; do not use negative tracking;
+- split a two-part title into a balanced centered two-line stack, matching `Agent\nIdentity` in the supplied reference;
 - preserve comfortable space between the two lines and at least roughly half a cap-height of optical padding inside any title-support layer;
 - use explicit range styling for highlighted terms;
 - center geometrically after final sizing;

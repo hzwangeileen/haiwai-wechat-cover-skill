@@ -57,14 +57,14 @@ The square footprint is intentionally larger. The square is reduced to 383 × 38
 
 - Horizontal alignment: center.
 - Vertical alignment: center.
-- Font preference: Albertus Nova, then Alegreya ExtraBold.
+- Font: Kadwa Regular, exact; do not silently fall back.
 - Upright style only; no italics.
-- Single line preferred; two lines maximum.
-- Use confident type size without making the title feel packed. As a starting point with Alegreya ExtraBold, use about 64 px with 72 px line height in landscape and 88 px with 100 px line height in square, then adjust optically.
-- Keep two-line line height at least equal to the font size; generally prefer about 1.08–1.16×.
-- Use neutral tracking by default. Do not apply negative tracking merely to make the title larger.
+- Use a balanced two-line stack for a two-part title, matching the Agent Identity reference; two lines maximum.
+- Landscape 900 × 383: 35 px font size, 46 px line height.
+- Square 900 × 900: 82 px font size, 108 px line height. At the 383 × 383 preview scale, this reproduces approximately 35 px font size and 46 px line height.
+- Use neutral tracking. Do not apply negative tracking.
 - When a support layer is present, preserve generous optical padding on all sides; reduce the title before squeezing its padding.
-- Shrink long text to fit; never exceed the active format's footprint.
+- Keep the specified sizes unless the title would overflow; shrink only enough to fit and report the adjustment.
 - Default color: black or white, whichever has stronger local contrast.
 - Apply explicit highlight colors only when requested.
 - Start with no background behind the keyword.
